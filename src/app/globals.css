@@ -1,4 +1,8 @@
-@import "tailwindcss";
+/* @tailwind directives require Tailwind's build process. Uncomment if using Tailwind CLI or PostCSS. */
+/* @tailwind base; */
+/* @tailwind components; */
+/* @tailwind utilities; */
+/* @import 'tailwindcss'; */
 
 :root {
   --background: #ffffff;
