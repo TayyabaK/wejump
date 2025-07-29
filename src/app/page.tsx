@@ -1,20 +1,14 @@
 // src/app/page.tsx
 'use client';
 
-import { Button, Typography, Container } from '@mui/material';
+import { Container } from '@mui/material';
+import Hero from '@/components/hero-section';
+
 
 export default function Home() {
   return (
     <Container  >
-      <Typography variant='h3' gutterBottom>
-        Welcome to WeJump 🚀
-      </Typography>
-      <Typography variant='body1'>
-        Launch your Solana meme token instantly with fair bonding curve pricing.
-      </Typography>
-      <Button variant='contained' color='primary' sx={{ mt: 3 }}>
-        Launch Token
-      </Button>
+      <Hero />
     </Container>
   );
 }
