@@ -40,7 +40,9 @@ const Navbar = () => {
         left: 0,
         right: 0,
         height: 64,
-        zIndex: theme.zIndex.appBar,
+        mb: 2,
+        pb: 2,
+        zIndex: (theme) => theme.zIndex.drawer + 1, // Higher than drawer/sidebar
       }}>
       <Toolbar
         sx={{
@@ -49,6 +51,8 @@ const Navbar = () => {
           pl: { xs: 10, md: '280px' },
           pr: 2,
           pt: 6,
+          pb: 6,
+          mb: 2,
           minHeight: '64px !important', // Force consistent height
         }}>
         {/* Left: Logo and Search */}

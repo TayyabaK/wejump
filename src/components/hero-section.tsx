@@ -13,11 +13,11 @@ const Hero = () => {
         position: 'relative',
         overflow: 'hidden',
         bgcolor: 'linear-gradient(to right, #fdea2e, #f40968)',
-        py: { xs: 2, md: 4 },
+        py: { xs: 2, md: 1 },
         borderBottomLeftRadius: 40,
         borderBottomRightRadius: 40,
         background: 'linear-gradient(135deg, #FDEA2E, #F40968)',
-        mt: { xs: 0, md: 5 },
+        zIndex: -1,
       }}>
       {/* Optional animated background pattern */}
       <Box
@@ -27,13 +27,13 @@ const Hero = () => {
           backgroundImage: "url('/icons/wejump-bg.png')",
           backgroundRepeat: 'repeat',
           opacity: 0.05,
-          zIndex: 1,
+          zIndex: -1,
         }}
       />
 
       <Container
         maxWidth='xl'
-        sx={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
+        sx={{ position: 'relative', zIndex: 0, textAlign: 'center' , mt: 4, mb: 6 }}>
         <Box sx={{ maxWidth: 1440, mx: 'auto' }}>
           <motion.div
             initial={{ opacity: 0, scale: 0.85 }}

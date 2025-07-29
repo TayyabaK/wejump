@@ -1,4 +1,3 @@
-// src/app/layout.tsx
 import './globals.css';
 import type { Metadata } from 'next';
 import Sidebar from '@/components/sidebar';
@@ -22,18 +21,40 @@ export default function RootLayout({
       <body>
         <LanguageProvider>
           <ThemeProvider>
-            <Box sx={{ pt: '64px' }}>
-              <Navbar />
+            {/* Sidebar should be first in DOM but with lower z-index */}
+            <Box
+              sx={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: { xs: '100%', md: '280px' },
+                height: '100%',
+                zIndex: 1, 
+              }}>
               <Sidebar />
-              <Box
-                component='main'
-                sx={{
-                  flexGrow: 1,
-                  p: 3,
-                  ml: { md: '280px' }, // Match sidebar width
-                }}>
-                {children}
-              </Box>
+            </Box>
+
+            {/* Navbar container with higher z-index */}
+            <Box
+              sx={{
+                position: 'relative',
+                zIndex: 0, // Higher than sidebar
+              }}>
+              <Navbar />
+            </Box>
+
+            {/* Main content */}
+            <Box
+              component='main'
+              sx={{
+                flexGrow: 1,
+                pt: 3,
+                mt: { xs: '64px', md: '64px' }, // Match navbar height
+                ml: { md: '280px' }, // Match sidebar width
+                position: 'relative',
+                zIndex: -1, // Between navbar and sidebar
+              }}>
+              {children}
             </Box>
           </ThemeProvider>
         </LanguageProvider>

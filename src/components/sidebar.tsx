@@ -93,6 +93,7 @@ const Sidebar = () => {
             display: 'flex',
             flexDirection: 'column',
             boxShadow: theme.shadows[2],
+            zIndex: 1, // Higher than navbar
           },
         }}>
         <Box
