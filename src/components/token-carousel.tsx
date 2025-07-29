@@ -37,7 +37,27 @@ const TokenCarousel = () => {
     { offset: 2, scale: 0.7, zIndex: 1, x: spacing * 1.8, y: yOffset * 2, opacity: 0.6, variant: 'subtitle2' }
   ];
 
-  const renderCard = ({ offset, scale, zIndex, x, y, opacity, variant, transition = { duration: 0.5 } }) => {
+  interface CardProps {
+    offset: number;
+    scale: number;
+    zIndex: number;
+    x: number;
+    y: number;
+    opacity: number;
+    variant: string;
+    transition?: object;
+  }
+
+  const renderCard = ({
+    offset,
+    scale,
+    zIndex,
+    x,
+    y,
+    opacity,
+    variant,
+    transition = { duration: 0.5 }
+  }: CardProps) => {
     const i = getIndex(activeIndex + offset);
     const isCenter = offset === 0;
     
