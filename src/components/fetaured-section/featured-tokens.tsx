@@ -1,12 +1,7 @@
 'use client';
 
 import React from 'react';
-import {
-  Box,
-  Typography,
-  useTheme,
-  Container,
-} from '@mui/material';
+import { Box, Typography, useTheme, Container } from '@mui/material';
 import TokenCard from './token-card';
 
 const mockTokens = [
@@ -73,7 +68,16 @@ const FeaturedTokens = () => {
         backgroundColor: 'background.default',
       }}>
       <Container maxWidth='xl' sx={{ px: { xs: 2, md: 6 } }}>
-        <Box sx={{ maxWidth: 1460, mx: 'auto', textAlign: 'center', mb: 4, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Box
+          sx={{
+            maxWidth: 1460,
+            mx: 'auto',
+            textAlign: 'center',
+            mb: 4,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}>
           <Typography variant='h4' fontWeight='bold' mb={1}>
             Featured Coins
           </Typography>
@@ -95,7 +99,8 @@ const FeaturedTokens = () => {
               alignItems: 'center',
               textAlign: 'center',
               justifyContent: 'center',
-              gap: 1,
+              gap: 2,
+              rowGap: 4, // Additional vertical gap control if needed
             }}>
             {mockTokens.map((token, index) => (
               <TokenCard key={index} {...token} />
