@@ -10,9 +10,13 @@ import {
   Button,
   useTheme,
   Stack,
+  Box,
+  InputBase,
+  useMediaQuery,
 } from '@mui/material';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import SearchIcon from '@mui/icons-material/Search';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import { useThemeMode } from '@/theme/theme-context';
 import { useLanguage } from '@/i18n/language-context';
@@ -23,66 +27,91 @@ const Navbar = () => {
   const { toggleColorMode, mode } = useThemeMode();
   const { t } = useLanguage();
   const isDark = mode === 'dark';
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <AppBar
-      position="sticky"
+      position='sticky'
       elevation={0}
       sx={{
         backgroundColor: theme.palette.background.default,
         color: theme.palette.text.primary,
-        borderBottom: `1px solid ${theme.palette.divider}`,
       }}
     >
-      <Toolbar sx={{ justifyContent: 'space-between', px: { xs: 2, md: 4 } }}>
-        {/* Left side: Logo/Brand */}
-        <Stack direction="row" alignItems="center" spacing={2}>
-          <Image
-            src="/icons/wejump.png"
-            alt="WeJump Logo"
-            height={40}
-            width={40}
-            style={{
-              objectFit: 'contain',
-              borderRadius: '50%',
-            }}
-          />
-          <Typography
-            variant="h6"
-            component="h1"
+      <Toolbar
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          pl: { xs: 10, md: '280px' },
+          pr: 2,
+        }}
+      >
+        {/* Left side: Logo and Search */}
+        <Stack direction='row' alignItems='center' spacing={2}>
+          {/* Hide on xs */}
+          <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center', gap: 1 }}>
+            <Image
+              src='/icons/wejump.png'
+              alt='WeJump Logo'
+              height={40}
+              width={40}
+              style={{
+                objectFit: 'contain',
+                borderRadius: '50%',
+              }}
+            />
+            <Typography
+              variant='h6'
+              component='h1'
+              sx={{
+                fontWeight: 700,
+                color: theme.palette.secondary.main,
+              }}
+            >
+              WeJump
+            </Typography>
+          </Box>
+
+          {/* Search Bar (only visible on sm screens) */}
+          <Box
             sx={{
-              fontWeight: 700,
-              color: theme.palette.secondary.main,
-              display: { xs: 'none', sm: 'block' },
+              display: { xs: 'none', md: 'flex' },
+              alignItems: 'center',
+              borderRadius: 2,
+              px: 1.5,
+              py: 0.5,
+              ml: 2,
+              backgroundColor: isDark ? '#2a2a2a' : '#f1f1f1',
+              color: theme.palette.text.primary,
             }}
           >
-            WeJump
-          </Typography>
+            <SearchIcon fontSize='small' sx={{ mr: 1, color: 'text.secondary' }} />
+            <InputBase
+              placeholder='Search…'
+              sx={{ fontSize: 14, minWidth: 120 }}
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </Box>
         </Stack>
 
-        {/* Right side: Controls */}
-        <Stack direction="row" alignItems="center" spacing={1}>
-          {/* Theme Toggle */}
+        {/* Right side: Theme, Language, Wallet */}
+        <Box display='flex' alignItems='center' gap={1}>
           <IconButton
             onClick={toggleColorMode}
-            color="inherit"
+            color='inherit'
             aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
             sx={{
-              color: isDark
-                ? theme.palette.primary.main
-                : theme.palette.secondary.main,
+              color: isDark ? theme.palette.primary.main : theme.palette.secondary.main,
             }}
           >
             {isDark ? <LightModeIcon /> : <DarkModeIcon />}
           </IconButton>
 
-          {/* Language Selector */}
           <LanguageSelector />
 
-          {/* Wallet Button */}
           <Button
-            variant="contained"
-            color="primary"
+            variant='contained'
+            color='primary'
             startIcon={<AccountBalanceWalletIcon />}
             sx={{
               fontWeight: 600,
@@ -93,9 +122,9 @@ const Navbar = () => {
             }}
             onClick={() => alert('Connect Wallet logic goes here')}
           >
-            {t.connectWallet}
+            {isMobile ? "" : t.connectWallet}
           </Button>
-        </Stack>
+        </Box>
       </Toolbar>
     </AppBar>
   );

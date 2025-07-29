@@ -5,6 +5,7 @@ import Sidebar from '@/components/sidebar';
 import { ThemeProvider } from '../theme/theme-context';
 import Navbar from '../components/navbar';
 import { LanguageProvider } from '@/i18n/language-context';
+import { Box } from '@mui/material';
 
 export const metadata: Metadata = {
   title: 'WeJump – Meme Token Launchpad',
@@ -22,8 +23,20 @@ export default function RootLayout({
         <LanguageProvider>
           <ThemeProvider>
             <Navbar />
-            <Sidebar />
-            {children}
+            <Box sx={{ display: 'flex', mt: '64px' }}>
+              {' '}
+              {/* Adjust mt to match Navbar height */}
+              <Sidebar />
+              <Box
+                component='main'
+                sx={{
+                  flexGrow: 1,
+                  p: 3,
+                  ml: { md: '280px' }, // Match sidebar width
+                }}>
+                {children}
+              </Box>
+            </Box>
           </ThemeProvider>
         </LanguageProvider>
       </body>

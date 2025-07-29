@@ -5,7 +5,7 @@ import { Button, Typography, Container } from '@mui/material';
 
 export default function Home() {
   return (
-    <Container maxWidth='md' sx={{ mt: 10 }}>
+    <Container  >
       <Typography variant='h3' gutterBottom>
         Welcome to WeJump 🚀
       </Typography>
