@@ -14,6 +14,7 @@ const Hero = () => {
         overflow: 'hidden',
         bgcolor: 'linear-gradient(to right, #fdea2e, #f40968)',
         py: { xs: 2, md: 1 },
+        mt: 5,
         borderBottomLeftRadius: 40,
         borderBottomRightRadius: 40,
         background: 'linear-gradient(135deg, #FDEA2E, #F40968)',
