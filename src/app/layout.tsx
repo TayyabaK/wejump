@@ -22,10 +22,8 @@ export default function RootLayout({
       <body>
         <LanguageProvider>
           <ThemeProvider>
-            <Navbar />
-            <Box sx={{ display: 'flex', mt: '64px' }}>
-              {' '}
-              {/* Adjust mt to match Navbar height */}
+            <Box sx={{ pt: '64px' }}>
+              <Navbar />
               <Sidebar />
               <Box
                 component='main'

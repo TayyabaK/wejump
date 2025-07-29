@@ -17,7 +17,7 @@ const Hero = () => {
         borderBottomLeftRadius: 40,
         borderBottomRightRadius: 40,
         background: 'linear-gradient(135deg, #FDEA2E, #F40968)',
-        mt: -3,
+        mt: { xs: 0, md: 5 },
       }}>
       {/* Optional animated background pattern */}
       <Box

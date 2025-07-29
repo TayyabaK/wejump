@@ -31,11 +31,16 @@ const Navbar = () => {
 
   return (
     <AppBar
-      position='sticky'
+      position='fixed' // Fixed instead of sticky
       elevation={0}
       sx={{
         backgroundColor: theme.palette.background.default,
         color: theme.palette.text.primary,
+        top: 0,
+        left: 0,
+        right: 0,
+        height: 64,
+        zIndex: theme.zIndex.appBar,
       }}>
       <Toolbar
         sx={{
@@ -43,11 +48,12 @@ const Navbar = () => {
           justifyContent: 'space-between',
           pl: { xs: 10, md: '280px' },
           pr: 2,
-          pt: 4,
+          pt: 6,
+          minHeight: '64px !important', // Force consistent height
         }}>
-        {/* Left side: Logo and Search */}
+        {/* Left: Logo and Search */}
         <Stack direction='row' alignItems='center' spacing={2}>
-          {/* Hide on xs */}
+          {/* Logo for mobile */}
           <Box
             sx={{
               display: { xs: 'flex', md: 'none' },
@@ -75,7 +81,7 @@ const Navbar = () => {
             </Typography>
           </Box>
 
-          {/* Search Bar (only visible on sm screens) */}
+          {/* Search on md+ */}
           <Box
             sx={{
               display: { xs: 'none', md: 'flex' },
@@ -88,7 +94,6 @@ const Navbar = () => {
                 ? theme.palette.background.paper
                 : theme.palette.background.default,
               border: `1px solid ${theme.palette.divider}`,
-
               color: theme.palette.text.primary,
             }}>
             <SearchIcon
@@ -103,7 +108,7 @@ const Navbar = () => {
           </Box>
         </Stack>
 
-        {/* Right side: Theme, Language, Wallet */}
+        {/* Right: Theme toggle, Language, Wallet */}
         <Box display='flex' alignItems='center' gap={1}>
           <IconButton
             onClick={toggleColorMode}
