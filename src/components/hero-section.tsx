@@ -79,7 +79,7 @@ const Hero = () => {
               variant='subtitle1'
               mt={1}
               color='white'
-              sx={{ maxWidth: 500, mx: 'auto', fontWeight: 400 }}>
+              sx={{ maxWidth: 500, mx: 'auto', fontWeight: 500 }}>
               A bold leap into the memeverse. Discover tokens, vote, launch and
               vibe with the community.
             </Typography>
