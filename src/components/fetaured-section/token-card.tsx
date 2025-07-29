@@ -1,8 +1,15 @@
-// components/TokenCard.tsx
 'use client';
 
 import React from 'react';
-import { Box, Typography, Card, CardContent, Avatar, LinearProgress, Tooltip } from '@mui/material';
+import {
+  Box,
+  Typography,
+  Card,
+  Avatar,
+  LinearProgress,
+  Tooltip,
+  useTheme,
+} from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 interface TokenCardProps {
@@ -14,43 +21,65 @@ interface TokenCardProps {
   updated: string;
 }
 
-const TokenCard: React.FC<TokenCardProps> = ({ name, symbol, logo, marketCap, ca, updated }) => {
-  const capColor: 'error' | 'warning' | 'primary' =
-    marketCap > 50000 ? 'error' : marketCap > 20000 ? 'warning' : 'primary';
+const TokenCard: React.FC<TokenCardProps> = ({
+  name,
+  symbol,
+  logo,
+  marketCap,
+  ca,
+  updated,
+}) => {
+  const theme = useTheme();
+
+  const capColor = theme.palette.secondary.main;
 
   return (
     <Card
       variant='outlined'
       sx={{
-        width: 280,
-        borderRadius: 4,
-        p: 1.5,
+        width: 360,
+        height: 200, 
+        boxShadow: 2,
+        bgcolor: 'background.paper',
+        borderRadius: 3,
+        px: 2,
+        py: 1.5,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        textAlign: 'left',
         transition: '0.3s',
         '&:hover': {
           boxShadow: 4,
           transform: 'translateY(-4px)',
         },
       }}>
-      <Box display='flex' alignItems='center' gap={2}>
-        <Avatar
-          src={logo}
-          alt={name}
-          sx={{ width: 56, height: 56, borderRadius: 2 }}
-          variant='rounded'
-        />
-        <Box>
+      {/* Left Side Content */}
+      <Box flex={1} pr={2}>
+        <Box display='flex' alignItems='center' gap={1}>
           <Typography fontWeight='bold' variant='subtitle1' noWrap>
             {name}
           </Typography>
-          <Typography variant='caption' color='text.secondary'>
-            {updated} ago
+          <Typography
+            variant='caption'
+            color='text.secondary'
+            sx={{
+              bgcolor:
+                theme.palette.mode === 'dark'
+                  ? 'rgba(255,255,255,0.1)'
+                  : 'rgba(0,0,0,0.05)',
+              px: 1,
+              py: 0.5,
+              borderRadius: 1,
+            }}>
+            {symbol}
           </Typography>
         </Box>
-      </Box>
 
-      <CardContent sx={{ px: 0.5, pb: '8px!important' }}>
         <Box display='flex' alignItems='center' gap={0.5} mt={0.5}>
-          <Typography variant='caption' color='text.secondary'>CA:</Typography>
+          <Typography variant='caption' color='text.secondary'>
+            CA:
+          </Typography>
           <Typography
             variant='caption'
             fontWeight={600}
@@ -58,25 +87,61 @@ const TokenCard: React.FC<TokenCardProps> = ({ name, symbol, logo, marketCap, ca
             {ca?.slice(0, 4)}...{ca?.slice(-4)}
           </Typography>
           <Tooltip title='Copy Address'>
-            <ContentCopyIcon sx={{ fontSize: 14, color: 'text.secondary', cursor: 'pointer' }} />
+            <ContentCopyIcon
+              sx={{
+                fontSize: 14,
+                color: 'text.secondary',
+                cursor: 'pointer',
+                '&:hover': {
+                  color: theme.palette.text.primary,
+                },
+              }}
+            />
           </Tooltip>
         </Box>
 
-        <Box mt={1}>
+        <Typography variant='caption' color='text.secondary' mt={1}>
+          Updated {updated} ago
+        </Typography>
+
+        <Box mt={2}>
           <Typography
             variant='body2'
             fontWeight='bold'
-            sx={{ color: `${capColor}.main` }}>
-            Market Cap: ${marketCap?.toLocaleString()}
+            sx={{ color: capColor }}>
+            Market Cap: ${marketCap.toLocaleString()}
           </Typography>
           <LinearProgress
             variant='determinate'
             value={Math.min((marketCap / 60000) * 100, 100)}
-            color={capColor}
-            sx={{ mt: 0.5, borderRadius: 5, height: 6 }}
+            sx={{
+              mt: 1,
+              borderRadius: 5,
+              height: 8,
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? 'rgba(255,255,255,0.1)'
+                  : 'rgba(0,0,0,0.05)',
+              '& .MuiLinearProgress-bar': {
+                backgroundColor: capColor,
+              },
+            }}
           />
         </Box>
-      </CardContent>
+      </Box>
+
+      {/* Right Side Image - Larger */}
+      <Avatar
+        src={logo}
+        alt={name}
+        sx={{
+          width: 180, // Increased from 72
+          height: 180, // Increased from 72
+          borderRadius: 2,
+          boxShadow: theme.shadows[2],
+        }}
+        variant='rounded'
+      />
     </Card>
   );
 };
