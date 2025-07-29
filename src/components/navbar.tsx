@@ -43,6 +43,7 @@ const Navbar = () => {
           justifyContent: 'space-between',
           pl: { xs: 10, md: '280px' },
           pr: 2,
+          pt: 4,
         }}>
         {/* Left side: Logo and Search */}
         <Stack direction='row' alignItems='center' spacing={2}>
