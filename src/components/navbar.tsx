@@ -36,20 +36,23 @@ const Navbar = () => {
       sx={{
         backgroundColor: theme.palette.background.default,
         color: theme.palette.text.primary,
-      }}
-    >
+      }}>
       <Toolbar
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
           pl: { xs: 10, md: '280px' },
           pr: 2,
-        }}
-      >
+        }}>
         {/* Left side: Logo and Search */}
         <Stack direction='row' alignItems='center' spacing={2}>
           {/* Hide on xs */}
-          <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center', gap: 1 }}>
+          <Box
+            sx={{
+              display: { xs: 'flex', md: 'none' },
+              alignItems: 'center',
+              gap: 1,
+            }}>
             <Image
               src='/icons/wejump.png'
               alt='WeJump Logo'
@@ -66,8 +69,7 @@ const Navbar = () => {
               sx={{
                 fontWeight: 700,
                 color: theme.palette.secondary.main,
-              }}
-            >
+              }}>
               WeJump
             </Typography>
           </Box>
@@ -81,13 +83,19 @@ const Navbar = () => {
               px: 1.5,
               py: 0.5,
               ml: 2,
-              backgroundColor: isDark ? '#2a2a2a' : '#f1f1f1',
+              backgroundColor: isDark
+                ? theme.palette.background.paper
+                : theme.palette.background.default,
+              border: `1px solid ${theme.palette.divider}`,
+
               color: theme.palette.text.primary,
-            }}
-          >
-            <SearchIcon fontSize='small' sx={{ mr: 1, color: 'text.secondary' }} />
+            }}>
+            <SearchIcon
+              fontSize='small'
+              sx={{ mr: 1, color: 'text.secondary' }}
+            />
             <InputBase
-              placeholder='Search…'
+              placeholder='Search Tokens'
               sx={{ fontSize: 14, minWidth: 120 }}
               inputProps={{ 'aria-label': 'search' }}
             />
@@ -101,9 +109,10 @@ const Navbar = () => {
             color='inherit'
             aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
             sx={{
-              color: isDark ? theme.palette.primary.main : theme.palette.secondary.main,
-            }}
-          >
+              color: isDark
+                ? theme.palette.primary.main
+                : theme.palette.secondary.main,
+            }}>
             {isDark ? <LightModeIcon /> : <DarkModeIcon />}
           </IconButton>
 
@@ -120,9 +129,8 @@ const Navbar = () => {
               px: 3,
               borderRadius: 2,
             }}
-            onClick={() => alert('Connect Wallet logic goes here')}
-          >
-            {isMobile ? "" : t.connectWallet}
+            onClick={() => alert('Connect Wallet logic goes here')}>
+            {isMobile ? '' : t.connectWallet}
           </Button>
         </Box>
       </Toolbar>

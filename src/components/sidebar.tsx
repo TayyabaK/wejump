@@ -66,8 +66,7 @@ const Sidebar = () => {
             '&:hover': {
               backgroundColor: theme.palette.action.hover,
             },
-          }}
-        >
+          }}>
           <MenuIcon />
         </IconButton>
       )}
@@ -95,18 +94,22 @@ const Sidebar = () => {
             flexDirection: 'column',
             boxShadow: theme.shadows[2],
           },
-        }}
-      >
+        }}>
         <Box
           sx={{
             flex: 1,
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden',
-          }}
-        >
+          }}>
           {/* Branding - only show on md+ */}
-          <Box sx={{ px: 2, display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 1 }}>
+          <Box
+            sx={{
+              px: 2,
+              display: { xs: 'none', md: 'flex' },
+              alignItems: 'center',
+              gap: 1,
+            }}>
             <Avatar
               src='/icons/wejump.png'
               alt='logo'
@@ -123,8 +126,7 @@ const Sidebar = () => {
                 fontWeight: 'bold',
                 color: theme.palette.secondary.main,
                 textShadow: '0 1px 2px rgba(0,0,0,0.1)',
-              }}
-            >
+              }}>
               WeJump
             </Typography>
           </Box>
@@ -149,8 +151,7 @@ const Sidebar = () => {
                 },
                 transition: 'all 0.2s ease',
               }}
-              startIcon={<RocketLaunchIcon />}
-            >
+              startIcon={<RocketLaunchIcon />}>
               {t.launchToken}
             </Button>
           </Box>
@@ -166,10 +167,15 @@ const Sidebar = () => {
                 py: 0.5,
                 mx: 2,
                 mt: 1,
-                backgroundColor: isDark ? '#2a2a2a' : '#f1f1f1',
-              }}
-            >
-              <SearchIcon fontSize='small' sx={{ mr: 1, color: 'text.secondary' }} />
+                backgroundColor: isDark
+                  ? theme.palette.background.paper
+                  : theme.palette.background.default,
+                  border: `1px solid ${theme.palette.divider}`,
+                }}>
+              <SearchIcon
+                fontSize='small'
+                sx={{ mr: 1, color: 'text.secondary' }}
+              />
               <InputBase
                 placeholder='Search…'
                 sx={{ fontSize: 14, minWidth: 120 }}
@@ -184,7 +190,10 @@ const Sidebar = () => {
           <Box sx={{ flex: 1, overflowY: 'auto', px: 1 }}>
             <List>
               {menuItems.map(({ text, icon }) => (
-                <ListItem disablePadding key={text} sx={{ borderRadius: '8px' }}>
+                <ListItem
+                  disablePadding
+                  key={text}
+                  sx={{ borderRadius: '8px' }}>
                   <ListItemButton
                     sx={{
                       '&:hover': {
@@ -192,14 +201,14 @@ const Sidebar = () => {
                       },
                       borderRadius: '8px',
                       mx: 1,
-                    }}
-                  >
+                    }}>
                     <ListItemIcon
                       sx={{
-                        color: isDark ? theme.palette.primary.main : theme.palette.primary.dark,
+                        color: isDark
+                          ? theme.palette.primary.main
+                          : theme.palette.primary.dark,
                         minWidth: '40px',
-                      }}
-                    >
+                      }}>
                       {icon}
                     </ListItemIcon>
                     <ListItemText
