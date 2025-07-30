@@ -66,6 +66,7 @@ const FeaturedTokens = () => {
         py: 4,
         px: 0,
         backgroundColor: 'background.default',
+        zIndex: -1,
       }}>
       <Container maxWidth='xl' sx={{ px: { xs: 2, md: 6 } }}>
         <Box
