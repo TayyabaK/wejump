@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Box, Typography, useTheme, Container } from '@mui/material';
+import { Box, Typography, Container } from '@mui/material';
 import TokenCard from './token-card';
 
 const mockTokens = [
@@ -56,7 +56,6 @@ const mockTokens = [
 ];
 
 const FeaturedTokens = () => {
-  const theme = useTheme();
 
   return (
     <Box

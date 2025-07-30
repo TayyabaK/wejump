@@ -34,6 +34,8 @@ const Sidebar = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const { mode } = useThemeMode();
   const { t } = useLanguage();
+  const isDarkMode = mode === 'dark';
+
 
   const menuItems = [
     { text: t.revenue, icon: <BarChartIcon /> },
@@ -79,8 +81,7 @@ const Sidebar = () => {
             '&:hover': {
               backgroundColor: theme.palette.action.hover,
             },
-          }}
-        >
+          }}>
           <MenuIcon />
         </IconButton>
       )}
@@ -112,16 +113,14 @@ const Sidebar = () => {
           },
         }}
         onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+        onMouseLeave={handleMouseLeave}>
         <Box
           sx={{
             flex: 1,
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden',
-          }}
-        >
+          }}>
           {/* Branding */}
           <Box
             sx={{
@@ -130,11 +129,10 @@ const Sidebar = () => {
               alignItems: 'center',
               gap: 1,
               minHeight: 80,
-            }}
-          >
+            }}>
             <Avatar
-              src="/icons/wejump.png"
-              alt="logo"
+              src='/icons/wejump.png'
+              alt='logo'
               sx={{
                 width: 60,
                 height: 60,
@@ -144,27 +142,30 @@ const Sidebar = () => {
             />
             {shouldShowText && (
               <Typography
-                variant="h6"
+                variant='h6'
                 sx={{
                   fontWeight: 'bold',
-                  color: theme.palette.secondary.main,
+                  color: isDarkMode
+                    ? theme.palette.primary.main
+                    : theme.palette.secondary.main,
                   textShadow: '0 1px 2px rgba(0,0,0,0.1)',
                   whiteSpace: 'nowrap',
-                }}
-              >
+                }}>
                 WeJump
               </Typography>
             )}
           </Box>
 
-          <Divider sx={{ my: 1, mx: shouldShowText ? 2 : 1, borderRadius: '2px' }} />
+          <Divider
+            sx={{ my: 1, mx: shouldShowText ? 2 : 1, borderRadius: '2px' }}
+          />
 
           {/* Launch Button */}
           <Box px={shouldShowText ? 2 : 1} pt={1}>
             <Button
               fullWidth={shouldShowText}
-              variant="contained"
-              color="secondary"
+              variant='contained'
+              color='secondary'
               sx={{
                 fontWeight: 'bold',
                 color: theme.palette.secondary.contrastText,
@@ -179,13 +180,14 @@ const Sidebar = () => {
                 },
                 transition: 'all 0.2s ease',
               }}
-              startIcon={shouldShowText ? <RocketLaunchIcon /> : null}
-            >
+              startIcon={shouldShowText ? <RocketLaunchIcon /> : null}>
               {shouldShowText ? t.launchToken : <RocketLaunchIcon />}
             </Button>
           </Box>
 
-          <Divider sx={{ my: 1, mx: shouldShowText ? 2 : 1, borderRadius: '2px' }} />
+          <Divider
+            sx={{ my: 1, mx: shouldShowText ? 2 : 1, borderRadius: '2px' }}
+          />
 
           {/* Menu Items */}
           <Box sx={{ flex: 1, overflowY: 'auto', px: 0 }}>
@@ -194,8 +196,7 @@ const Sidebar = () => {
                 <ListItem
                   disablePadding
                   key={text}
-                  sx={{ borderRadius: '8px' }}
-                >
+                  sx={{ borderRadius: '8px' }}>
                   <ListItemButton
                     sx={{
                       '&:hover': {
@@ -205,8 +206,7 @@ const Sidebar = () => {
                       mx: shouldShowText ? 1 : 0.5,
                       px: shouldShowText ? 2 : 1,
                       justifyContent: shouldShowText ? 'flex-start' : 'center',
-                    }}
-                  >
+                    }}>
                     <ListItemIcon
                       sx={{
                         color: isDark
@@ -215,8 +215,7 @@ const Sidebar = () => {
                         minWidth: 0,
                         mr: shouldShowText ? 2 : 'auto',
                         justifyContent: 'center',
-                      }}
-                    >
+                      }}>
                       {icon}
                     </ListItemIcon>
                     {shouldShowText && (
@@ -224,8 +223,8 @@ const Sidebar = () => {
                         primary={text}
                         sx={{
                           '& .MuiTypography-root': {
-                            fontWeight: 'medium'
-                          }
+                            fontWeight: 'medium',
+                          },
                         }}
                       />
                     )}

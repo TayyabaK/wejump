@@ -30,15 +30,18 @@ const TokenCard: React.FC<TokenCardProps> = ({
   updated,
 }) => {
   const theme = useTheme();
+  const isDarkMode = theme.palette.mode === 'dark';
 
-  const capColor = theme.palette.secondary.main;
+  const capColor = isDarkMode
+    ? theme.palette.primary.main
+    : theme.palette.secondary.main;
 
   return (
     <Card
       variant='outlined'
       sx={{
         width: 360,
-        height: 200, 
+        height: 200,
         boxShadow: 2,
         bgcolor: 'background.paper',
         borderRadius: 3,
@@ -107,10 +110,7 @@ const TokenCard: React.FC<TokenCardProps> = ({
         <Box mt={2}>
           <Typography
             variant='body2'
-            sx={{ color: capColor,
-              fontWeight: 300, 
-              mb: 0.5,
-             }}>
+            sx={{ color: capColor, fontWeight: 300, mb: 0.5 }}>
             Market Cap: ${marketCap.toLocaleString()}
           </Typography>
           <LinearProgress
