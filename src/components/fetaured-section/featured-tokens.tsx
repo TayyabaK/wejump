@@ -100,11 +100,13 @@ const FeaturedTokens = () => {
               textAlign: 'center',
               justifyContent: 'center',
               gap: 2,
-              rowGap: 4, // Additional vertical gap control if needed
+              rowGap: 4,
             }}>
-            {mockTokens.map((token, index) => (
-              <TokenCard key={index} {...token} />
-            ))}
+            {[...Array(3)]
+              .flatMap(() => mockTokens)
+              .map((token, index) => (
+                <TokenCard key={index} {...token} />
+              ))}
           </Box>
         </Box>
       </Container>
