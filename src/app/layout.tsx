@@ -6,6 +6,7 @@ import Navbar from '../components/navbar';
 import { LanguageProvider } from '@/i18n/language-context';
 import { Box } from '@mui/material';
 import '@fontsource/sora'; // defaults to 400 weight
+import Footer from '@/components/footer';
 
 export const metadata: Metadata = {
   title: 'WeJump – Meme Token Launchpad',
@@ -54,6 +55,7 @@ export default function RootLayout({
               }}>
               {children}
             </Box>
+            <Footer />
           </ThemeProvider>
         </LanguageProvider>
       </body>

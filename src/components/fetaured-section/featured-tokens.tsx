@@ -100,7 +100,6 @@ const FeaturedTokens = () => {
               textAlign: 'center',
               justifyContent: 'center',
               gap: 2,
-              rowGap: 4,
             }}>
             {[...Array(6)]
               .flatMap(() => mockTokens)

@@ -57,7 +57,6 @@ const TokenCard: React.FC<TokenCardProps> = ({
         borderRadius: 4,
         p: 3,
         pt: 4.5,
-        pr: 4.5,
         display: 'flex',
         flexDirection: 'column',
         position: 'relative',
@@ -79,7 +78,7 @@ const TokenCard: React.FC<TokenCardProps> = ({
         sx={{
           position: 'absolute',
           top: 16,
-          right: 16,
+          right: 32,
           width: { xs: 64, sm: 80, md: 100, lg: 110 },
           height: { xs: 90, sm: 110, md: 130, lg: 150 },
           borderRadius: 2,
@@ -145,6 +144,7 @@ const TokenCard: React.FC<TokenCardProps> = ({
           value={Math.min((marketCap / 60000) * 100, 100)}
           sx={{
             height: 8,
+            width: '100%',
             borderRadius: 4,
             backgroundColor: isDarkMode
               ? 'rgba(255,255,255,0.1)'
