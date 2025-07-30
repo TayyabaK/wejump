@@ -5,21 +5,23 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import TokenCarousel from './token-carousel';
 
-
 const Hero = () => {
   return (
     <Box
       sx={{
         position: 'relative',
-        overflow: 'hidden',
-        bgcolor: 'linear-gradient(to right, #fdea2e, #f40968)',
+        overflowX: 'hidden', // Prevent horizontal scroll
+        overflowY: 'hidden',
+        width: '100%',
+        maxWidth: '100vw',
         py: { xs: 2, md: 1 },
         mt: 5,
         borderBottomLeftRadius: 40,
         borderBottomRightRadius: 40,
         background: 'linear-gradient(135deg, #FDEA2E, #F40968)',
         zIndex: -1,
-      }}>
+      }}
+    >
       {/* Optional animated background pattern */}
       <Box
         sx={{
@@ -33,13 +35,25 @@ const Hero = () => {
       />
 
       <Container
-        maxWidth='xl'
-        sx={{ position: 'relative', zIndex: 0, textAlign: 'center' , mt: 4, mb: 6 }}>
-        <Box sx={{ maxWidth: 1440, mx: 'auto' }}>
+        maxWidth={false} // Full width container
+        sx={{
+          width: '100%',
+          maxWidth: '1920px',
+          px: { xs: 2, md: 6 },
+          mx: 'auto',
+          position: 'relative',
+          zIndex: 0,
+          textAlign: 'center',
+          mt: 4,
+          mb: 6,
+        }}
+      >
+        <Box>
           <motion.div
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}>
+            transition={{ duration: 0.6 }}
+          >
             <Image
               src='/icons/wejump.png'
               alt='WeJump Logo'
@@ -56,7 +70,8 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}>
+            transition={{ duration: 0.7, delay: 0.3 }}
+          >
             <Typography
               variant='h3'
               component='h1'
@@ -66,7 +81,8 @@ const Hero = () => {
                 background: 'linear-gradient(to right, #fff, #fdea2e)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-              }}>
+              }}
+            >
               Welcome to WeJump
             </Typography>
           </motion.div>
@@ -75,19 +91,22 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.5 }}>
+            transition={{ duration: 0.7, delay: 0.5 }}
+          >
             <Typography
               variant='subtitle1'
               mt={1}
               color='white'
-              sx={{ maxWidth: 500, mx: 'auto', fontWeight: 500 }}>
+              sx={{ maxWidth: 500, mx: 'auto', fontWeight: 500 }}
+            >
               A bold leap into the memeverse. Discover tokens, vote, launch and
               vibe with the community.
             </Typography>
           </motion.div>
         </Box>
+
         {/* Token Carousel */}
-        <Box sx={{ position: 'relative', zIndex: 2 }}>
+        <Box sx={{ position: 'relative', zIndex: 2, mt: 4 }}>
           <TokenCarousel />
         </Box>
       </Container>

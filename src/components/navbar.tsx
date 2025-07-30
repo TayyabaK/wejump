@@ -40,6 +40,7 @@ const Navbar = () => {
         left: 0,
         right: 0,
         height: 100,
+        pl: { xs: 0, md: '250px' }, // Match sidebar width
         zIndex: (theme) => theme.zIndex.drawer + 1,
       }}>
       <Toolbar
@@ -55,29 +56,6 @@ const Navbar = () => {
         }}>
         {/* Left: Company Logo + Name + (optional search) */}
         <Stack direction='row' alignItems='center' spacing={2}>
-          {/* Always show logo and name */}
-          <Box display='flex' alignItems='center' gap={1}>
-            <Image
-              src='/icons/wejump.png'
-              alt='WeJump Logo'
-              height={40}
-              width={40}
-              style={{
-                objectFit: 'contain',
-                borderRadius: '50%',
-              }}
-            />
-            <Typography
-              variant='h6'
-              component='h1'
-              sx={{
-                fontWeight: 700,
-                color: theme.palette.secondary.main,
-              }}>
-              WeJump
-            </Typography>
-          </Box>
-
           {/* Search on md+ */}
           {!isMobile && (
             <Box
@@ -88,6 +66,7 @@ const Navbar = () => {
                 px: 1.5,
                 py: 0.5,
                 ml: 10,
+                width: 300,
                 backgroundColor: isDark
                   ? theme.palette.background.paper
                   : theme.palette.background.default,

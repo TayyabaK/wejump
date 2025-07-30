@@ -48,9 +48,8 @@ export default function RootLayout({
               sx={{
                 pt: 3,
                 mt: { xs: '64px', md: '64px' }, // Match navbar height
-                ml: { xs: 0, md: '100px' }, // Match sidebar width
+                ml: { xs: 0, md: '72px' }, // Match sidebar width
                 zIndex: -1, // Between navbar and sidebar
-                width: '100%',
               }}>
               {children}
             </Box>
