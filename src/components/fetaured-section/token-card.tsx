@@ -107,8 +107,10 @@ const TokenCard: React.FC<TokenCardProps> = ({
         <Box mt={2}>
           <Typography
             variant='body2'
-            fontWeight='bold'
-            sx={{ color: capColor }}>
+            sx={{ color: capColor,
+              fontWeight: 300, 
+              mb: 0.5,
+             }}>
             Market Cap: ${marketCap.toLocaleString()}
           </Typography>
           <LinearProgress

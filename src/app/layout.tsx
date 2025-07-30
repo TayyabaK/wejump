@@ -5,6 +5,7 @@ import { ThemeProvider } from '../theme/theme-context';
 import Navbar from '../components/navbar';
 import { LanguageProvider } from '@/i18n/language-context';
 import { Box } from '@mui/material';
+import '@fontsource/sora'; // defaults to 400 weight
 
 export const metadata: Metadata = {
   title: 'WeJump – Meme Token Launchpad',

@@ -76,6 +76,8 @@ const Hero = () => {
               variant='h3'
               component='h1'
               fontWeight={800}
+              fontSize={{ xs: '2.5rem', md: '3.5rem' }}
+              fontStyle={'bold'}
               mt={1}
               sx={{
                 background: 'linear-gradient(to right, #fff, #fdea2e)',

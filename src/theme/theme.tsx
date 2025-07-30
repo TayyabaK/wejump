@@ -3,7 +3,7 @@ import { createTheme } from '@mui/material/styles';
 
 const commonSettings = {
   typography: {
-    fontFamily: 'Roboto, sans-serif',
+    fontFamily: 'Sora, sans-serif',
   },
 };
 
@@ -30,6 +30,7 @@ export const lightTheme = createTheme({
       primary: '#20194A',
     },
   },
+  
   ...commonSettings,
 });
 
