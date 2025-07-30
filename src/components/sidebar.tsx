@@ -16,7 +16,6 @@ import {
   useTheme,
   useMediaQuery,
   Button,
-  InputBase,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
@@ -25,12 +24,12 @@ import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import FlashOnIcon from '@mui/icons-material/FlashOn';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
-import SearchIcon from '@mui/icons-material/Search';
 import { useLanguage } from '@/i18n/language-context';
 import { useThemeMode } from '@/theme/theme-context';
 
 const Sidebar = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const { mode } = useThemeMode();
@@ -50,9 +49,23 @@ const Sidebar = () => {
 
   const isDark = mode === 'dark';
 
+  const handleMouseEnter = () => {
+    if (!isMobile) {
+      setHovered(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!isMobile) {
+      setHovered(false);
+    }
+  };
+
+  const drawerWidth = hovered || isMobile ? 240 : 72;
+  const shouldShowText = hovered || isMobile;
+
   return (
     <>
-      {/* Mobile Toggle Button Only (No Branding) */}
       {isMobile && (
         <IconButton
           onClick={toggleDrawer}
@@ -66,163 +79,163 @@ const Sidebar = () => {
             '&:hover': {
               backgroundColor: theme.palette.action.hover,
             },
-          }}>
+          }}
+        >
           <MenuIcon />
         </IconButton>
       )}
 
       <Drawer
         variant={isMobile ? 'temporary' : 'permanent'}
-        open={open}
+        open={isMobile ? open : true}
         onClose={toggleDrawer}
         sx={{
-          '& .MuiBackdrop-root': {
-            backgroundColor: 'transparent',
-            backdropFilter: 'none',
-          },
           '& .MuiDrawer-paper': {
-            width: 240,
+            width: drawerWidth,
             backgroundColor: theme.palette.background.paper,
             color: theme.palette.text.primary,
             borderRight: 'none',
-            borderRadius: '16px',
-            mx: 2,
-            mt: 4,
-            mb: 4,
-            height: `calc(100vh - 64px)`,
+            borderRadius: isMobile ? '16px' : '0 16px 16px 0',
+            mx: isMobile ? 2 : 0,
+            mt: isMobile ? 4 : 0,
+            mb: isMobile ? 4 : 0,
+            height: isMobile ? `calc(100vh - 64px)` : '100vh',
             display: 'flex',
             flexDirection: 'column',
             boxShadow: theme.shadows[2],
-            zIndex: 1, // Higher than navbar
+            zIndex: 1,
+            overflowX: 'hidden',
+            transition: theme.transitions.create('width', {
+              easing: theme.transitions.easing.sharp,
+              duration: theme.transitions.duration.enteringScreen,
+            }),
           },
-        }}>
+        }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <Box
           sx={{
             flex: 1,
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden',
-          }}>
-          {/* Branding - only show on md+ */}
+          }}
+        >
+          {/* Branding */}
           <Box
             sx={{
-              px: 2,
-              display: { xs: 'none', md: 'flex' },
+              px: 1,
+              display: 'flex',
               alignItems: 'center',
               gap: 1,
-            }}>
+              minHeight: 80,
+            }}
+          >
             <Avatar
-              src='/icons/wejump.png'
-              alt='logo'
+              src="/icons/wejump.png"
+              alt="logo"
               sx={{
-                width: 80,
-                height: 80,
+                width: 60,
+                height: 60,
                 borderRadius: '50%',
                 boxShadow: theme.shadows[1],
               }}
             />
-            <Typography
-              variant='h6'
-              sx={{
-                fontWeight: 'bold',
-                color: theme.palette.secondary.main,
-                textShadow: '0 1px 2px rgba(0,0,0,0.1)',
-              }}>
-              WeJump
-            </Typography>
+            {shouldShowText && (
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: 'bold',
+                  color: theme.palette.secondary.main,
+                  textShadow: '0 1px 2px rgba(0,0,0,0.1)',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                WeJump
+              </Typography>
+            )}
           </Box>
 
-          <Divider sx={{ my: 2, mx: 2, borderRadius: '2px' }} />
+          <Divider sx={{ my: 1, mx: shouldShowText ? 2 : 1, borderRadius: '2px' }} />
 
           {/* Launch Button */}
-          <Box px={2} pt={2}>
+          <Box px={shouldShowText ? 2 : 1} pt={1}>
             <Button
-              fullWidth
-              variant='contained'
-              color='secondary'
+              fullWidth={shouldShowText}
+              variant="contained"
+              color="secondary"
               sx={{
                 fontWeight: 'bold',
                 color: theme.palette.secondary.contrastText,
-                mb: 2,
+                mb: 1,
                 borderRadius: 2,
                 boxShadow: 'none',
+                minWidth: 0,
+                px: shouldShowText ? 2 : 1.5,
                 '&:hover': {
                   boxShadow: theme.shadows[2],
                   transform: 'translateY(-1px)',
                 },
                 transition: 'all 0.2s ease',
               }}
-              startIcon={<RocketLaunchIcon />}>
-              {t.launchToken}
+              startIcon={shouldShowText ? <RocketLaunchIcon /> : null}
+            >
+              {shouldShowText ? t.launchToken : <RocketLaunchIcon />}
             </Button>
           </Box>
 
-          {/* Search bar on mobile  only */}
-          {isMobile && (
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                borderRadius: 2,
-                px: 1.5,
-                py: 0.5,
-                mx: 2,
-                mt: 1,
-                backgroundColor: isDark
-                  ? theme.palette.background.paper
-                  : theme.palette.background.default,
-                  border: `1px solid ${theme.palette.divider}`,
-                }}>
-              <SearchIcon
-                fontSize='small'
-                sx={{ mr: 1, color: 'text.secondary' }}
-              />
-              <InputBase
-                placeholder='Search…'
-                sx={{ fontSize: 14, minWidth: 120 }}
-                inputProps={{ 'aria-label': 'search' }}
-              />
-            </Box>
-          )}
-
-          <Divider sx={{ my: 2, mx: 2, borderRadius: '2px' }} />
+          <Divider sx={{ my: 1, mx: shouldShowText ? 2 : 1, borderRadius: '2px' }} />
 
           {/* Menu Items */}
-          <Box sx={{ flex: 1, overflowY: 'auto', px: 1 }}>
+          <Box sx={{ flex: 1, overflowY: 'auto', px: 0 }}>
             <List>
               {menuItems.map(({ text, icon }) => (
                 <ListItem
                   disablePadding
                   key={text}
-                  sx={{ borderRadius: '8px' }}>
+                  sx={{ borderRadius: '8px' }}
+                >
                   <ListItemButton
                     sx={{
                       '&:hover': {
                         backgroundColor: theme.palette.action.hover,
                       },
                       borderRadius: '8px',
-                      mx: 1,
-                    }}>
+                      mx: shouldShowText ? 1 : 0.5,
+                      px: shouldShowText ? 2 : 1,
+                      justifyContent: shouldShowText ? 'flex-start' : 'center',
+                    }}
+                  >
                     <ListItemIcon
                       sx={{
                         color: isDark
                           ? theme.palette.primary.main
                           : theme.palette.primary.dark,
-                        minWidth: '40px',
-                      }}>
+                        minWidth: 0,
+                        mr: shouldShowText ? 2 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
                       {icon}
                     </ListItemIcon>
-                    <ListItemText
-                      primary={text}
-                      primaryTypographyProps={{ fontWeight: 'medium' }}
-                    />
+                    {shouldShowText && (
+                      <ListItemText
+                        primary={text}
+                        sx={{
+                          '& .MuiTypography-root': {
+                            fontWeight: 'medium'
+                          }
+                        }}
+                      />
+                    )}
                   </ListItemButton>
                 </ListItem>
               ))}
             </List>
           </Box>
 
-          <Divider sx={{ mx: 2, borderRadius: '2px' }} />
+          <Divider sx={{ mx: shouldShowText ? 2 : 1, borderRadius: '2px' }} />
         </Box>
       </Drawer>
     </>

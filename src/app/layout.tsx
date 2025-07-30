@@ -27,7 +27,6 @@ export default function RootLayout({
                 position: 'fixed',
                 top: 0,
                 left: 0,
-                width: { xs: '100%', md: '280px' },
                 height: '100%',
                 zIndex: 1, 
               }}>
@@ -47,12 +46,11 @@ export default function RootLayout({
             <Box
               component='main'
               sx={{
-                flexGrow: 1,
                 pt: 3,
                 mt: { xs: '64px', md: '64px' }, // Match navbar height
-                ml: { md: '280px' }, // Match sidebar width
-                position: 'relative',
+                ml: { xs: 0, md: '100px' }, // Match sidebar width
                 zIndex: -1, // Between navbar and sidebar
+                width: '100%',
               }}>
               {children}
             </Box>
