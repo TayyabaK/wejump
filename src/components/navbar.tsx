@@ -31,7 +31,7 @@ const Navbar = () => {
 
   return (
     <AppBar
-      position='fixed' // Fixed instead of sticky
+      position='fixed'
       elevation={0}
       sx={{
         backgroundColor: theme.palette.background.default,
@@ -40,29 +40,23 @@ const Navbar = () => {
         left: 0,
         right: 0,
         height: 100,
-        zIndex: (theme) => theme.zIndex.drawer + 1, // Higher than drawer/sidebar
+        zIndex: (theme) => theme.zIndex.drawer + 1,
       }}>
       <Toolbar
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
-          pl: { xs: 10, md: '280px' },
+          pl: { xs: 2, md: 4 },
           pr: 2,
-          pt: 6,
           pb: 6,
+          pt: 5,
           mb: 2,
-          mt: 1,
-          minHeight: '64px !important', // Force consistent height
+          minHeight: '64px !important',
         }}>
-        {/* Left: Logo and Search */}
+        {/* Left: Company Logo + Name + (optional search) */}
         <Stack direction='row' alignItems='center' spacing={2}>
-          {/* Logo for mobile */}
-          <Box
-            sx={{
-              display: { xs: 'flex', md: 'none' },
-              alignItems: 'center',
-              gap: 1,
-            }}>
+          {/* Always show logo and name */}
+          <Box display='flex' alignItems='center' gap={1}>
             <Image
               src='/icons/wejump.png'
               alt='WeJump Logo'
@@ -85,33 +79,35 @@ const Navbar = () => {
           </Box>
 
           {/* Search on md+ */}
-          <Box
-            sx={{
-              display: { xs: 'none', md: 'flex' },
-              alignItems: 'center',
-              borderRadius: 2,
-              px: 1.5,
-              py: 0.5,
-              ml: 2,
-              backgroundColor: isDark
-                ? theme.palette.background.paper
-                : theme.palette.background.default,
-              border: `1px solid ${theme.palette.divider}`,
-              color: theme.palette.text.primary,
-            }}>
-            <SearchIcon
-              fontSize='small'
-              sx={{ mr: 1, color: 'text.secondary' }}
-            />
-            <InputBase
-              placeholder='Search Tokens'
-              sx={{ fontSize: 14, minWidth: 120 }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Box>
+          {!isMobile && (
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                borderRadius: 2,
+                px: 1.5,
+                py: 0.5,
+                ml: 10,
+                backgroundColor: isDark
+                  ? theme.palette.background.paper
+                  : theme.palette.background.default,
+                border: `1px solid ${theme.palette.divider}`,
+                color: theme.palette.text.primary,
+              }}>
+              <SearchIcon
+                fontSize='small'
+                sx={{ mr: 1, color: 'text.secondary' }}
+              />
+              <InputBase
+                placeholder='Search Tokens'
+                sx={{ fontSize: 14, minWidth: 120 }}
+                inputProps={{ 'aria-label': 'search' }}
+              />
+            </Box>
+          )}
         </Stack>
 
-        {/* Right: Theme toggle, Language, Wallet */}
+        {/* Right: Theme toggle, Language selector, Wallet button */}
         <Box display='flex' alignItems='center' gap={1}>
           <IconButton
             onClick={toggleColorMode}
