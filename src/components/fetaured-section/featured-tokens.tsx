@@ -10,7 +10,7 @@ const mockTokens = [
     symbol: 'PJ',
     logo: '/sample/token-1.webp',
     marketCap: 28,
-    ca: '9ju5...bonk',
+    ca: '9ju5...jump',
     updated: '1m',
   },
   {
@@ -18,7 +18,7 @@ const mockTokens = [
     symbol: 'STK',
     logo: '/sample/token-2.webp',
     marketCap: 15100,
-    ca: 'CJED...bonk',
+    ca: 'CJED...jump',
     updated: '21m',
   },
   {
@@ -26,7 +26,7 @@ const mockTokens = [
     symbol: 'USD',
     logo: '/sample/token-3.jpeg',
     marketCap: 51900,
-    ca: '7WXA...bonk',
+    ca: '7WXA...jump',
     updated: '54m',
   },
   {
@@ -34,7 +34,7 @@ const mockTokens = [
     symbol: 'TTK',
     logo: '/sample/token-4.webp',
     marketCap: 14900,
-    ca: '9v4a...bonk',
+    ca: '9v4a...jump',
     updated: '3m',
   },
   {
@@ -42,7 +42,7 @@ const mockTokens = [
     symbol: 'SUS',
     logo: '/sample/token-5.webp',
     marketCap: 39000,
-    ca: 'B13G...bonk',
+    ca: 'B13G...jump',
     updated: '14m',
   },
   {
@@ -50,7 +50,7 @@ const mockTokens = [
     symbol: 'USB',
     logo: '/sample/token-6.webp',
     marketCap: 9800,
-    ca: 'bjU9...bonk',
+    ca: 'bjU9...jump',
     updated: '7m',
   },
 ];
