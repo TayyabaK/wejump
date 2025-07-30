@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Box, Container, Typography, IconButton, Divider } from '@mui/material';
-import TelegramIcon from '@mui/icons-material/Telegram';
+import { Box, Container, Typography} from '@mui/material';
 
 const Footer = () => {
   return (
