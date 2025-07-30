@@ -29,7 +29,7 @@ export default function RootLayout({
                 top: 0,
                 left: 0,
                 height: '100%',
-                zIndex: 1, 
+                zIndex: 200, 
               }}>
               <Sidebar />
             </Box>
@@ -38,7 +38,7 @@ export default function RootLayout({
             <Box
               sx={{
                 position: 'relative',
-                zIndex: 0, // Higher than sidebar
+                zIndex: 100, // Higher than sidebar
               }}>
               <Navbar />
             </Box>
@@ -50,7 +50,7 @@ export default function RootLayout({
                 pt: 3,
                 mt: { xs: '64px', md: '64px' }, // Match navbar height
                 ml: { xs: 0, md: '72px' }, // Match sidebar width
-                zIndex: -1, // Between navbar and sidebar
+                zIndex: 0, // Between navbar and sidebar
               }}>
               {children}
             </Box>

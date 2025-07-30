@@ -43,8 +43,16 @@ const TokenCard: React.FC<TokenCardProps> = ({
     <Card
       variant='outlined'
       sx={{
-        width: 400,
-        height: 260,
+        width: {
+          xs: '100%', // full width on small screens
+          sm: 320,
+          md: 360,
+          lg: 400,
+        },
+        height: {
+          xs: 'auto',
+          md: 260,
+        },
         bgcolor: 'background.paper',
         borderRadius: 4,
         p: 3,
@@ -62,7 +70,7 @@ const TokenCard: React.FC<TokenCardProps> = ({
           boxShadow: `0 12px 24px ${capColor}`,
           border: `1px solid ${capColor}`,
         },
-        zIndex: 1,
+        zIndex: 0,
       }}>
       {/* Floating Avatar */}
       <Avatar
@@ -72,8 +80,8 @@ const TokenCard: React.FC<TokenCardProps> = ({
           position: 'absolute',
           top: 16,
           right: 16,
-          width: 110,
-          height: 150,
+          width: { xs: 64, sm: 80, md: 100, lg: 110 },
+          height: { xs: 90, sm: 110, md: 130, lg: 150 },
           borderRadius: 2,
           boxShadow: theme.shadows[2],
           border: `2px solid ${
@@ -129,7 +137,7 @@ const TokenCard: React.FC<TokenCardProps> = ({
         <Box display='flex' alignItems='center' mb={0.5}>
           <TrendingUpIcon fontSize='small' sx={{ color: capColor, mr: 1 }} />
           <Typography variant='body2' sx={{ color: capColor }}>
-            ${marketCap.toLocaleString()}
+            MarketCap : ${marketCap.toLocaleString()}
           </Typography>
         </Box>
         <LinearProgress

@@ -65,7 +65,7 @@ const FeaturedTokens = () => {
         py: 4,
         px: 0,
         backgroundColor: 'background.default',
-        zIndex: -1,
+        zIndex: 0,
       }}>
       <Container maxWidth='xl' sx={{ px: { xs: 2, md: 6 } }}>
         <Box
@@ -102,7 +102,7 @@ const FeaturedTokens = () => {
               gap: 2,
               rowGap: 4,
             }}>
-            {[...Array(3)]
+            {[...Array(6)]
               .flatMap(() => mockTokens)
               .map((token, index) => (
                 <TokenCard key={index} {...token} />

@@ -10,16 +10,14 @@ const Hero = () => {
     <Box
       sx={{
         position: 'relative',
-        overflowX: 'hidden', // Prevent horizontal scroll
-        overflowY: 'hidden',
+        overflow: 'hidden',
         width: '100%',
-        maxWidth: '100vw',
-        py: { xs: 2, md: 1 },
-        mt: 5,
-        borderBottomLeftRadius: 40,
-        borderBottomRightRadius: 40,
+        py: { xs: 4, sm: 6, md: 8 },
+        mt: { xs: 2, md: 0.25 },
+        borderBottomLeftRadius: { xs: 24, md: 40 },
+        borderBottomRightRadius: { xs: 24, md: 40 },
         background: 'linear-gradient(135deg, #FDEA2E, #F40968)',
-        zIndex: -1,
+        zIndex: 0,
       }}
     >
       {/* Optional animated background pattern */}
@@ -30,85 +28,104 @@ const Hero = () => {
           backgroundImage: "url('/icons/wejump-bg.png')",
           backgroundRepeat: 'repeat',
           opacity: 0.05,
-          zIndex: -1,
+          zIndex: 0,
         }}
       />
 
       <Container
-        maxWidth={false} // Full width container
+        maxWidth='xl'
         sx={{
           width: '100%',
-          maxWidth: '1920px',
-          px: { xs: 2, md: 6 },
+          px: { xs: 2, sm: 4, md: 6 },
           mx: 'auto',
           position: 'relative',
-          zIndex: 0,
+          zIndex: 1,
           textAlign: 'center',
-          mt: 4,
-          mb: 6,
         }}
       >
-        <Box>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-          >
-            <Image
-              src='/icons/wejump.png'
-              alt='WeJump Logo'
-              width={120}
-              height={120}
-              style={{
-                borderRadius: '50%',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-              }}
-            />
-          </motion.div>
+        {/* Logo */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <Image
+            src='/icons/wejump.png'
+            alt='WeJump Logo'
+            width={120}
+            height={120}
+            style={{
+              borderRadius: '50%',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+              margin: '0 auto',
+            }}
+          />
+        </motion.div>
 
-          {/* Headline */}
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
+        {/* Headline */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <Typography
+            variant='h3'
+            component='h1'
+            fontWeight={800}
+            sx={{
+              background: 'linear-gradient(to right, #fff, #fdea2e)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontSize: {
+                xs: '2rem',
+                sm: '2.5rem',
+                md: '3rem',
+                lg: '3.5rem',
+              },
+              mt: 2,
+              lineHeight: 1.2,
+            }}
           >
-            <Typography
-              variant='h3'
-              component='h1'
-              fontWeight={800}
-              fontSize={{ xs: '2.5rem', md: '3.5rem' }}
-              fontStyle={'bold'}
-              mt={1}
-              sx={{
-                background: 'linear-gradient(to right, #fff, #fdea2e)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              }}
-            >
-              Welcome to WeJump
-            </Typography>
-          </motion.div>
+            Welcome to WeJump
+          </Typography>
+        </motion.div>
 
-          {/* Subheading */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.5 }}
+        {/* Subheading */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <Typography
+            variant='subtitle1'
+            color='white'
+            sx={{
+              maxWidth: 600,
+              mx: 'auto',
+              fontWeight: 500,
+              mt: 0.5,
+              mb: 1,
+              fontSize: {
+                xs: '0.9rem',
+                sm: '1rem',
+                md: '1.1rem',
+              },
+              lineHeight: 1.6,
+            }}
           >
-            <Typography
-              variant='subtitle1'
-              mt={1}
-              color='white'
-              sx={{ maxWidth: 500, mx: 'auto', fontWeight: 500 }}
-            >
-              A bold leap into the memeverse. Discover tokens, vote, launch and
-              vibe with the community.
-            </Typography>
-          </motion.div>
-        </Box>
+            A bold leap into the memeverse. Discover tokens, vote, launch and
+            vibe with the community.
+          </Typography>
+        </motion.div>
 
         {/* Token Carousel */}
-        <Box sx={{ position: 'relative', zIndex: 2, mt: 4 }}>
+        <Box
+          sx={{
+            position: 'relative',
+            zIndex: 2,
+            mt: { xs: 3, md: 4 },
+          }}
+        >
           <TokenCarousel />
         </Box>
       </Container>
