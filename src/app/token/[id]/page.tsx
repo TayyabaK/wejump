@@ -1,5 +1,5 @@
 'use client';
-import { Container, Grid } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import TokenHeader from '@/components/token-detail/token-header';
 import TokenChart from '@/components/token-detail/token-chart';
 import BuySellBox from '@/components/token-detail/buy-sell';
@@ -21,27 +21,42 @@ export default function TokenDetailsPage() {
         createdAt={created}
       />
 
-      <Grid container spacing={4}>
-        <Grid item xs={12} md={8}>
-          <TokenChart />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <BuySellBox marketCap={marketCap} />
-        </Grid>
-      </Grid>
-
-      <TokenInfoAccordion
-        info={{
-          Supply: tokenData.supply,
-          Created: tokenData.created,
-          'Trade fees': tokenData.tradeFee,
-          'Contract Address': tokenData.contract,
-          'Developer Address': tokenData.developer,
+      {/* Chart & BuySellBox layout */}
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          gap: 4,
+          mt: 4,
         }}
-      />
+      >
+        <Box sx={{ flex: 2 }}>
+          <TokenChart />
+        </Box>
+        <Box sx={{ flex: 1 }}>
+          <BuySellBox marketCap={marketCap} />
+        </Box>
+      </Box>
 
-      <ActivityTable />
-      <TokenHoldersTable />
+      <Box mt={6}>
+        <TokenInfoAccordion
+          info={{
+            Supply: tokenData.supply,
+            Created: tokenData.created,
+            'Trade fees': tokenData.tradeFee,
+            'Contract Address': tokenData.contract,
+            'Developer Address': tokenData.developer,
+          }}
+        />
+      </Box>
+
+      <Box mt={6}>
+        <ActivityTable />
+      </Box>
+
+      <Box mt={6}>
+        <TokenHoldersTable />
+      </Box>
     </Container>
   );
 }
