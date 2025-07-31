@@ -14,6 +14,7 @@ import {
   Chip,
   Link,
 } from '@mui/material';
+import { useThemeMode } from '@/theme/theme-context';
 
 const holdersData = [
   { rank: 1, holder: '9A72...PUVQ', percent: 28.82 },
@@ -26,43 +27,67 @@ const holdersData = [
   { rank: 8, holder: 'HnnT...kFAg', percent: 1.43 },
   { rank: 9, holder: '3DU5...UmTK', percent: 1.35 },
   { rank: 10, holder: 'DMx6...Yhfq', percent: 1.24 },
-  // Add more mock entries if needed
 ];
 
 export default function TokenHoldersTable() {
+  const { mode } = useThemeMode();
+  const isDarkMode = mode === 'dark';
   return (
     <Box mt={4}>
-      <Typography variant="h6" fontWeight={700} mb={2}>
+      <Typography variant='h6' fontWeight={700} mb={2}>
         Top Token Holders
       </Typography>
 
       <TableContainer component={Paper} elevation={2}>
-        <Table size="small">
+        <Table size='small' sx={{ tableLayout: 'fixed' }}>
+          <colgroup>
+            <col style={{ width: '33%' }} />
+            <col style={{ width: '33%' }} />
+            <col style={{ width: '33%' }} />
+          </colgroup>
           <TableHead>
             <TableRow>
-              <TableCell>#</TableCell>
-              <TableCell>Holder</TableCell>
-              <TableCell align="right">%</TableCell>
+              <TableCell sx={{ width: '33%' }}>#</TableCell>
+              <TableCell sx={{ width: '33%' }}>Holder</TableCell>
+              <TableCell sx={{ width: '33%' }} align='right'>
+                %
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {holdersData.map((row) => (
-              <TableRow key={row.rank}>
-                <TableCell>{row.rank}</TableCell>
-                <TableCell>
-                  <Box display="flex" alignItems="center" gap={1}>
-                    <Chip label={row.holder} size="small" />
+              <TableRow
+                key={row.rank}
+                sx={{
+                  '&:not(:last-child)': {
+                    borderBottom: '1px solid',
+                    borderColor: isDarkMode ? 'white' : 'grey',
+                  },
+                  height: '48px',
+                }}>
+                <TableCell sx={{ width: '33%' }}>{row.rank}</TableCell>
+                <TableCell sx={{ width: '33%' }}>
+                  <Box display='flex' alignItems='center' gap={1}>
+                    <Chip
+                      label={row.holder}
+                      size='small'
+                      sx={{ maxWidth: 'calc(100% - 32px)' }}
+                    />
                     <Link
-                      href={`https://solscan.io/account/${row.holder.replace('...', '')}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      underline="none"
-                    >
+                      href={`https://solscan.io/account/${row.holder.replace(
+                        '...',
+                        ''
+                      )}`}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      underline='none'>
                       🔗
                     </Link>
                   </Box>
                 </TableCell>
-                <TableCell align="right">{row.percent.toFixed(2)}%</TableCell>
+                <TableCell sx={{ width: '33%' }} align='right'>
+                  {row.percent.toFixed(2)}%
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

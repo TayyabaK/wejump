@@ -29,6 +29,7 @@ export const lightTheme = createTheme({
     text: {
       primary: '#20194A',
     },
+    divider: '#424242', // Light gray for dividers
   },
 
   ...commonSettings,
@@ -56,6 +57,7 @@ export const darkTheme = createTheme({
     text: {
       primary: '#ffffff',
     },
+    divider: '#ffffff', // Dark gray for dividers
   },
   ...commonSettings,
 });
