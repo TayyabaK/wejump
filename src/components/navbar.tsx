@@ -84,7 +84,7 @@ const Navbar = () => {
           )}
 
           {/* Right Side Controls */}
-          <Box display='flex' alignItems='center' gap={1}>
+          <Box display='flex' alignItems='center' gap={1} ml='auto'>
             <IconButton
               onClick={toggleColorMode}
               color='inherit'
