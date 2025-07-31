@@ -33,10 +33,10 @@ const Hero = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}>
             <Image
-              src='/icons/wejump.png'
+              src='/images/wejump.gif'
               alt='WeJump Logo'
-              width={120}
-              height={120}
+              width={140}
+              height={140}
               style={{
                 borderRadius: '50%',
                 boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
