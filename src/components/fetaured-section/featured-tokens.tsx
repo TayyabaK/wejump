@@ -100,8 +100,6 @@ const FeaturedTokens = () => {
       <Container maxWidth='xl' sx={{ px: { xs: 2, md: 6 } }}>
         <Box
           sx={{
-            maxWidth: 1460,
-            mx: 'auto',
             textAlign: 'center',
             mb: 4,
             display: 'flex',
@@ -200,8 +198,8 @@ const FeaturedTokens = () => {
               gridTemplateColumns: {
                 xs: '1fr',
                 sm: 'repeat(1, 1fr)',
+                md: 'repeat(2, 1fr)',
                 lg: 'repeat(3, 1fr)',
-                xl: 'repeat(4, 1fr)',
               },
               justifyItems: 'center',
               alignItems: 'center',
@@ -218,7 +216,6 @@ const FeaturedTokens = () => {
                   sx={{
                     cursor: 'pointer',
                     width: '100%',
-                    maxWidth: 400,
                     transition: 'transform 0.2s ease-in-out',
                     '&:hover': {
                       transform: 'scale(1.02)',

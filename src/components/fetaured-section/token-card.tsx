@@ -43,16 +43,6 @@ const TokenCard: React.FC<TokenCardProps> = ({
     <Card
       variant='outlined'
       sx={{
-        width: {
-          xs: '100%', // full width on small screens
-          sm: 320,
-          md: 360,
-          lg: 400,
-        },
-        height: {
-          xs: 'auto',
-          md: 260,
-        },
         bgcolor: 'background.paper',
         borderRadius: 4,
         p: 3,
