@@ -26,16 +26,17 @@ import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 import { useLanguage } from '@/i18n/language-context';
 import { useThemeMode } from '@/theme/theme-context';
+import { useRouter } from 'next/navigation';
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
-  const [hovered, setHovered] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const { mode } = useThemeMode();
   const { t } = useLanguage();
   const isDarkMode = mode === 'dark';
-
+  const router = useRouter();
 
   const menuItems = [
     { text: t.revenue, icon: <BarChartIcon /> },
@@ -49,22 +50,21 @@ const Sidebar = () => {
     setOpen(!open);
   };
 
+  const toggleCollapse = () => {
+    if (!isMobile) {
+      setCollapsed(!collapsed);
+    }
+  };
+
   const isDark = mode === 'dark';
-
-  const handleMouseEnter = () => {
-    if (!isMobile) {
-      setHovered(true);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (!isMobile) {
-      setHovered(false);
-    }
-  };
-
-  const drawerWidth = hovered || isMobile ? 240 : 72;
-  const shouldShowText = hovered || isMobile;
+  const drawerWidth = 240;
+  const collapsedWidth = 72;
+  const currentWidth = isMobile
+    ? drawerWidth
+    : collapsed
+    ? collapsedWidth
+    : drawerWidth;
+  const shouldShowText = !collapsed || isMobile;
 
   return (
     <>
@@ -92,7 +92,7 @@ const Sidebar = () => {
         onClose={toggleDrawer}
         sx={{
           '& .MuiDrawer-paper': {
-            width: drawerWidth,
+            width: currentWidth,
             backgroundColor: theme.palette.background.paper,
             color: theme.palette.text.primary,
             borderRight: 'none',
@@ -108,12 +108,12 @@ const Sidebar = () => {
             overflowX: 'hidden',
             transition: theme.transitions.create('width', {
               easing: theme.transitions.easing.sharp,
-              duration: theme.transitions.duration.enteringScreen,
+              duration: theme.transitions.duration.standard,
             }),
           },
         }}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}>
+        onMouseEnter={toggleCollapse}
+        onMouseLeave={toggleCollapse}>
         <Box
           sx={{
             flex: 1,
@@ -123,12 +123,17 @@ const Sidebar = () => {
           }}>
           {/* Branding */}
           <Box
+            onClick={() => router.push('/')}
             sx={{
               px: 1,
               display: 'flex',
               alignItems: 'center',
               gap: 1,
               minHeight: 80,
+              cursor: 'pointer',
+              '&:hover': {
+                opacity: 0.85,
+              },
             }}>
             <Avatar
               src='/icons/wejump.png'

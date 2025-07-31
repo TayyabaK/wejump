@@ -1,7 +1,16 @@
 'use client';
 
-import React from 'react';
-import { Box, Typography, Container } from '@mui/material';
+import React, { useState } from 'react';
+import {
+  Box,
+  Typography,
+  Container,
+  InputBase,
+  Paper,
+  Button,
+  useTheme,
+} from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 import TokenCard from './token-card';
 
 const mockTokens = [
@@ -55,7 +64,18 @@ const mockTokens = [
   },
 ];
 
+const filterOptions = [
+  'Last Trade',
+  'Creation Time',
+  'Heating Up',
+  'Watchlist',
+  'All Tokens',
+];
+
 const FeaturedTokens = () => {
+  const theme = useTheme();
+  const [selected, setSelected] = useState('Last Trade');
+  const isDark = theme.palette.mode === 'dark';
 
   return (
     <Box
@@ -81,10 +101,87 @@ const FeaturedTokens = () => {
           <Typography variant='h4' fontWeight='bold' mb={1}>
             Featured Coins
           </Typography>
-          <Typography variant='subtitle1' color='text.secondary' mb={4}>
+          <Typography variant='subtitle1' color='text.secondary' mb={2}>
             The hottest tokens everyone&apos;s watching right now.
           </Typography>
 
+          {/* Filter Bar */}
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: { xs: 'column', sm: 'row' },
+              flexWrap: 'wrap',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 2,
+              mb: 4,
+              width: '100%',
+            }}>
+            {/* Search */}
+            <Paper
+              component='form'
+              sx={{
+                p: '6px 12px',
+                display: 'flex',
+                alignItems: 'center',
+                width: {
+                  xs: '100%',
+                  sm: 300,
+                  md: 320,
+                },
+                borderRadius: '24px',
+                backgroundColor: isDark ? '#2c2c3a' : '#f7f7f7',
+                boxShadow: 'none',
+                flexShrink: 0,
+              }}>
+              <SearchIcon sx={{ color: 'text.secondary', mr: 1 }} />
+              <InputBase
+                placeholder='Search tokens...'
+                sx={{ flex: 1, fontSize: '0.9rem' }}
+              />
+            </Paper>
+
+            {/* Buttons */}
+            {filterOptions.map((opt) => (
+              <Button
+                key={opt}
+                onClick={() => setSelected(opt)}
+                startIcon={opt === 'All Tokens' ? <SearchIcon /> : null}
+                sx={{
+                  fontWeight: 600,
+                  fontSize: '0.875rem',
+                  borderRadius: '16px',
+                  px: 2.5,
+                  py: 1.2,
+                  color:
+                    selected === opt
+                      ? theme.palette.primary.contrastText
+                      : theme.palette.text.primary,
+                  backgroundColor:
+                    selected === opt
+                      ? theme.palette.primary.main
+                      : isDark
+                      ? 'rgba(255,255,255,0.05)'
+                      : 'rgba(0,0,0,0.04)',
+                  '&:hover': {
+                    backgroundColor:
+                      selected === opt
+                        ? theme.palette.primary.dark
+                        : isDark
+                        ? 'rgba(255,255,255,0.08)'
+                        : 'rgba(0,0,0,0.07)',
+                    transform: 'scale(1.03)',
+                    boxShadow: theme.shadows[1],
+                  },
+                  transition: 'all 0.2s ease-in-out',
+                  textTransform: 'none',
+                }}>
+                {opt}
+              </Button>
+            ))}
+          </Box>
+
+          {/* Token Grid */}
           <Box
             sx={{
               display: 'grid',
