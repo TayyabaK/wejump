@@ -72,23 +72,11 @@ const Hero = () => {
               <Box
                 sx={{
                   display: 'inline',
-                  background: `linear-gradient(to right, ${theme.palette.primary.main}, #fff)`,
+                  background: theme.palette.primary.main,
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                 }}>
-                Welcome to{' '}
-              </Box>
-              <Box
-                sx={{
-                  display: 'inline',
-                  background: isDarkMode
-                    ? theme.palette.primary.main
-                    : theme.palette.secondary.main,
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  fontWeight: 800,
-                }}>
-                WeJump
+                Welcome to <strong>WeJump</strong>
               </Box>
             </Typography>
           </motion.div>
