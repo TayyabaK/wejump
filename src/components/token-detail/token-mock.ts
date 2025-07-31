@@ -1,7 +1,7 @@
 export const tokenData = {
   name: 'Nutter',
   symbol: 'NUTTER',
-  contract: '6QYq...bonk',
+  contract: '6QYq...jump',
   marketCap: 73870.73,
   created: '7/30/2025, 12:05:26 PM',
   slippage: 5,

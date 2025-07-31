@@ -19,9 +19,21 @@ export default function TokenInfoAccordion({ info }: TokenInfoAccordionProps) {
       </AccordionSummary>
       <AccordionDetails>
         {Object.entries(info).map(([label, value]) => (
-          <Box key={label} display="flex" justifyContent="space-between" my={0.5}>
-            <Typography variant="body2">{label}</Typography>
-            <Typography variant="body2" fontWeight={600}>{value}</Typography>
+          <Box
+            key={label}
+            display='flex'
+            justifyContent='space-between'
+            py={1.5} // Increased vertical padding
+            sx={{
+              '&:not(:last-child)': {
+                borderBottom: '1px solid',
+                borderColor: 'divider', // Optional divider line
+              },
+            }}>
+            <Typography variant='body2'>{label}</Typography>
+            <Typography variant='body2' fontWeight={600}>
+              {value}
+            </Typography>
           </Box>
         ))}
       </AccordionDetails>

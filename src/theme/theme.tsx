@@ -30,7 +30,7 @@ export const lightTheme = createTheme({
       primary: '#20194A',
     },
   },
-  
+
   ...commonSettings,
 });
 
@@ -51,7 +51,7 @@ export const darkTheme = createTheme({
     },
     background: {
       default: '#20194A',
-      paper: '#391e6bff',
+      paper: '#512f8f',
     },
     text: {
       primary: '#ffffff',
