@@ -109,7 +109,6 @@ const FeaturedTokens = () => {
           <Box
             sx={{
               display: 'flex',
-              flexDirection: { xs: 'column', sm: 'row' },
               flexWrap: 'wrap',
               alignItems: 'center',
               justifyContent: 'center',
@@ -124,15 +123,10 @@ const FeaturedTokens = () => {
                 p: '6px 12px',
                 display: 'flex',
                 alignItems: 'center',
-                width: {
-                  xs: '100%',
-                  sm: 300,
-                  md: 320,
-                },
+                width: 250,
                 borderRadius: '24px',
                 backgroundColor: isDark ? '#2c2c3a' : '#f7f7f7',
                 boxShadow: 'none',
-                flexShrink: 0,
               }}>
               <SearchIcon sx={{ color: 'text.secondary', mr: 1 }} />
               <InputBase
