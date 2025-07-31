@@ -5,9 +5,12 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import TokenCarousel from './token-carousel';
 import { useTheme } from '@mui/material/styles';
+import { useThemeMode } from '@/theme/theme-context';
 
 const Hero = () => {
   const theme = useTheme();
+  const { mode } = useThemeMode();
+  const isDarkMode = mode === 'dark';
 
   return (
     <Box>
@@ -66,7 +69,27 @@ const Hero = () => {
                 mt: 2,
                 lineHeight: 1.2,
               }}>
-              Welcome to WeJump
+              <Box
+                sx={{
+                  display: 'inline',
+                  background: `linear-gradient(to right, ${theme.palette.primary.main}, #fff)`,
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}>
+                Welcome to{' '}
+              </Box>
+              <Box
+                sx={{
+                  display: 'inline',
+                  background: isDarkMode
+                    ? theme.palette.primary.main
+                    : theme.palette.secondary.main,
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  fontWeight: 800,
+                }}>
+                WeJump
+              </Box>
             </Typography>
           </motion.div>
 
@@ -94,33 +117,31 @@ const Hero = () => {
               A bold leap into the memeverse. Discover tokens, buy/sell, vote,
               launch your own and vibe with the community.
             </Typography>
+            {/* Create Token Button */}
+            <Button
+              variant='contained'
+              color='secondary'
+              sx={{
+                fontWeight: 'bold',
+                fontSize: '1rem',
+                color: theme.palette.secondary.contrastText,
+                mb: 1,
+                borderRadius: 2,
+                width: 200,
+                height: 48,
+                boxShadow: 'none',
+                minWidth: 0,
+                px: 2,
+                '&:hover': {
+                  boxShadow: theme.shadows[2],
+                  transform: 'translateY(-1px)',
+                },
+                transition: 'all 0.2s ease',
+                mt: 2,
+              }}>
+              Create a Token
+            </Button>
           </motion.div>
-
-          {/* Create Token Button */}
-          <Button
-            variant='contained'
-            color='secondary'
-            sx={{
-              fontWeight: 'bold',
-              fontSize: '1rem',
-              color: theme.palette.secondary.contrastText,
-              mb: 1,
-              borderRadius: 2,
-              width: 200,
-              height: 48,
-              boxShadow: 'none',
-              minWidth: 0,
-              px: 2,
-              '&:hover': {
-                boxShadow: theme.shadows[2],
-                transform: 'translateY(-1px)',
-              },
-              transition: 'all 0.2s ease',
-              mt: 2,
-            }}>
-            Create a Token
-          </Button>
-
           {/* Token Carousel */}
           <Box
             sx={{
