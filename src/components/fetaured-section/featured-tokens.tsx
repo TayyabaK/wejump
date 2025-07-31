@@ -127,6 +127,7 @@ const FeaturedTokens = () => {
                 borderRadius: '24px',
                 backgroundColor: theme.palette.background.paper,
                 boxShadow: 'none',
+                border: `1px solid ${isDark ? theme.palette.primary.main : theme.palette.secondary.main}`,
               }}>
               <SearchIcon sx={{ color: 'text.secondary', mr: 1 }} />
               <InputBase

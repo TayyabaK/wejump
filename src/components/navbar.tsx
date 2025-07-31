@@ -68,9 +68,13 @@ const Navbar = () => {
                 backgroundColor: isDark
                   ? theme.palette.background.paper
                   : theme.palette.background.default,
-                border: `1px solid ${theme.palette.divider}`,
                 borderRadius: '24px',
                 color: theme.palette.text.primary,
+                border: `1px solid ${
+                  isDark
+                    ? theme.palette.primary.main
+                    : theme.palette.secondary.main
+                }`,
               }}>
               <SearchIcon
                 fontSize='small'
