@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Typography, Container } from '@mui/material';
+import { Box, Typography, Container, Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import TokenCarousel from './token-carousel';
@@ -95,6 +95,28 @@ const Hero = () => {
               vibe with the community.
             </Typography>
           </motion.div>
+
+          {/* Create Token Button */}
+          <Button
+            variant='contained'
+            color='secondary'
+            sx={{
+              fontWeight: 'bold',
+              color: theme.palette.secondary.contrastText,
+              mb: 1,
+              borderRadius: 2,
+              boxShadow: 'none',
+              minWidth: 0,
+              px: 2,
+              '&:hover': {
+                boxShadow: theme.shadows[2],
+                transform: 'translateY(-1px)',
+              },
+              transition: 'all 0.2s ease',
+              mt: 2,
+            }}>
+            Create a Token
+          </Button>
 
           {/* Token Carousel */}
           <Box

@@ -12,7 +12,7 @@ export default function TokenDetailsPage() {
   const { name, developer, contract, marketCap, created } = tokenData;
 
   return (
-    <Container maxWidth="xl" sx={{ mt: 4 }}>
+    <Container maxWidth='xl' sx={{ mt: 4 }}>
       <TokenHeader
         name={name}
         creator={developer}
@@ -28,13 +28,12 @@ export default function TokenDetailsPage() {
           flexDirection: { xs: 'column', md: 'row' },
           gap: 4,
           mt: 4,
-        }}
-      >
+        }}>
         <Box sx={{ flex: 2 }}>
           <TokenChart />
         </Box>
         <Box sx={{ flex: 1 }}>
-          <BuySellBox marketCap={marketCap} />
+          <BuySellBox />
         </Box>
       </Box>
 

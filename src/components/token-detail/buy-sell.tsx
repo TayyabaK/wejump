@@ -41,19 +41,19 @@ const BuySellBox = () => {
       }}>
       {/* Market Cap Progress */}
       <Box>
-        <Box display="flex" justifyContent="space-between">
-          <Typography variant="body2" fontWeight={600}>
+        <Box display='flex' justifyContent='space-between'>
+          <Typography variant='body2' fontWeight={600}>
             Market Cap Progress:
           </Typography>
           <Typography
-            variant="body2"
+            variant='body2'
             fontWeight={600}
             color={theme.palette.primary.dark}>
             {progress.toFixed(2)}%
           </Typography>
         </Box>
         <LinearProgress
-          variant="determinate"
+          variant='determinate'
           value={progress}
           sx={{
             mt: 0.5,
@@ -67,13 +67,17 @@ const BuySellBox = () => {
           }}
         />
         <Box
-          display="flex"
-          justifyContent="space-between"
+          display='flex'
+          justifyContent='space-between'
           mt={0.5}
-          fontSize="0.85rem"
-          color="text.secondary">
-          <Typography variant="caption">Current: ${currentCap.toLocaleString()}</Typography>
-          <Typography variant="caption">Target: ${targetCap.toLocaleString()}</Typography>
+          fontSize='0.85rem'
+          color='text.secondary'>
+          <Typography variant='caption'>
+            Current: ${currentCap.toLocaleString()}
+          </Typography>
+          <Typography variant='caption'>
+            Target: ${targetCap.toLocaleString()}
+          </Typography>
         </Box>
       </Box>
 
@@ -95,21 +99,27 @@ const BuySellBox = () => {
             py: 1.2,
             '&.Mui-selected': {
               color: 'black',
-              backgroundColor: tab === 'buy' ? theme.palette.primary.main : theme.palette.secondary.main,
+              backgroundColor:
+                tab === 'buy'
+                  ? theme.palette.primary.main
+                  : theme.palette.secondary.main,
               '&:hover': {
-                backgroundColor: tab === 'buy' ? theme.palette.primary.dark : theme.palette.secondary.dark,
+                backgroundColor:
+                  tab === 'buy'
+                    ? theme.palette.primary.dark
+                    : theme.palette.secondary.dark,
               },
             },
           },
         }}>
-        <ToggleButton value="buy">Buy</ToggleButton>
-        <ToggleButton value="sell">Sell</ToggleButton>
+        <ToggleButton value='buy'>Buy</ToggleButton>
+        <ToggleButton value='sell'>Sell</ToggleButton>
       </ToggleButtonGroup>
 
       {/* Slippage Field */}
       <TextField
-        label="Slippage (%)"
-        variant="outlined"
+        label='Slippage (%)'
+        variant='outlined'
         value={slippage}
         onChange={(e) => setSlippage(e.target.value)}
         fullWidth
@@ -122,40 +132,40 @@ const BuySellBox = () => {
 
       {/* Amount Field */}
       <TextField
-        label="Amount"
-        variant="outlined"
+        label='Amount'
+        variant='outlined'
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
         fullWidth
         InputProps={{
-          endAdornment: <InputAdornment position="end">SOL</InputAdornment>,
+          endAdornment: <InputAdornment position='end'>SOL</InputAdornment>,
           sx: {
             borderRadius: 1.5,
           },
         }}
       />
 
-      <Typography variant="caption" color="text.secondary">
+      <Typography variant='caption' color='text.secondary'>
         ≈ 0 SOLANA
       </Typography>
 
-      <Box display="flex" alignItems="center" gap={1}>
-        <AttachMoneyIcon fontSize="small" color="success" />
-        <Typography variant="body2" fontWeight={500}>
+      <Box display='flex' alignItems='center' gap={1}>
+        <AttachMoneyIcon fontSize='small' color='success' />
+        <Typography variant='body2' fontWeight={500}>
           0.00000 SOL
         </Typography>
       </Box>
 
-      <Box display="flex" gap={1}>
-        <Chip label="Half" size="small" color="primary" variant="outlined" />
-        <Chip label="Max" size="small" color="primary" variant="outlined" />
+      <Box display='flex' gap={1}>
+        <Chip label='Half' size='small' color='primary' variant='outlined' />
+        <Chip label='Max' size='small' color='primary' variant='outlined' />
       </Box>
 
       <Divider sx={{ my: 1 }} />
 
       {/* Connect Wallet Button */}
       <Button
-        variant="contained"
+        variant='contained'
         fullWidth
         sx={{
           bgcolor: '#BDBDBD',
