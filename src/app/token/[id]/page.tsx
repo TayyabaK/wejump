@@ -26,16 +26,29 @@ export default function TokenDetailsPage() {
           flexDirection: { xs: 'column', md: 'row' },
           gap: 4,
           mt: 4,
+          alignItems: 'flex-start', // Align items to the top
         }}>
-        <Box sx={{ flex: 2 }}>
+        {/* Left Column - Chart and Tabs */}
+        <Box
+          sx={{
+            flex: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 4,
+          }}>
           <TokenChart />
+          <TabsSection />
         </Box>
-        <Box sx={{ flex: 1 }}>
+
+        {/* Right Column - BuySellBox */}
+        <Box
+          sx={{
+            flex: 1,
+            position: { md: 'sticky' },
+            top: 20, // Adjust this value as needed for your header height
+          }}>
           <BuySellBox />
         </Box>
-      </Box>
-      <Box sx={{ mt: 4 }}>
-        <TabsSection />
       </Box>
     </Container>
   );
