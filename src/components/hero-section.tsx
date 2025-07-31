@@ -76,7 +76,9 @@ const Hero = () => {
               <Box
                 sx={{
                   display: 'inline',
-                  background: theme.palette.primary.main,
+                  background: isDarkMode
+                    ? theme.palette.background.default
+                    : 'linear-gradient(to right, #fff, #fdea2e)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                 }}>

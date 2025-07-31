@@ -3,10 +3,8 @@ import { Box, Container } from '@mui/material';
 import TokenHeader from '@/components/token-detail/token-header';
 import TokenChart from '@/components/token-detail/token-chart';
 import BuySellBox from '@/components/token-detail/buy-sell';
-import TokenInfoAccordion from '@/components/token-detail/token-info-accordion';
-import ActivityTable from '@/components/token-detail/activity-table';
-import TokenHoldersTable from '@/components/token-detail/token-holders-table';
 import { tokenData } from '@/components/token-detail/token-mock';
+import TabsSection from '../../../components/token-detail/tab-section';
 
 export default function TokenDetailsPage() {
   const { name, developer, contract, marketCap, created } = tokenData;
@@ -36,25 +34,8 @@ export default function TokenDetailsPage() {
           <BuySellBox />
         </Box>
       </Box>
-
-      <Box mt={6}>
-        <TokenInfoAccordion
-          info={{
-            Supply: tokenData.supply,
-            Created: tokenData.created,
-            'Trade fees': tokenData.tradeFee,
-            'Contract Address': tokenData.contract,
-            'Developer Address': tokenData.developer,
-          }}
-        />
-      </Box>
-
-      <Box mt={6}>
-        <ActivityTable />
-      </Box>
-
-      <Box mt={6}>
-        <TokenHoldersTable />
+      <Box sx={{ mt: 4 }}>
+        <TabsSection />
       </Box>
     </Container>
   );
