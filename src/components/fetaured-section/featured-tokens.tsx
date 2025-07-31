@@ -9,6 +9,7 @@ import {
   Paper,
   Button,
   useTheme,
+  useMediaQuery
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import TokenCard from './token-card';
@@ -76,6 +77,7 @@ const FeaturedTokens = () => {
   const theme = useTheme();
   const [selected, setSelected] = useState('Last Trade');
   const isDark = theme.palette.mode === 'dark';
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <Box
@@ -117,24 +119,30 @@ const FeaturedTokens = () => {
               width: '100%',
             }}>
             {/* Search */}
-            <Paper
-              component='form'
-              sx={{
-                p: '6px 12px',
-                display: 'flex',
-                alignItems: 'center',
-                width: 250,
-                borderRadius: '24px',
-                backgroundColor: theme.palette.background.paper,
-                boxShadow: 'none',
-                border: `1px solid ${isDark ? theme.palette.primary.main : theme.palette.secondary.main}`,
-              }}>
-              <SearchIcon sx={{ color: 'text.secondary', mr: 1 }} />
-              <InputBase
-                placeholder='Search tokens...'
-                sx={{ flex: 1, fontSize: '0.9rem' }}
-              />
-            </Paper>
+            {isMobile && (
+              <Paper
+                component='form'
+                sx={{
+                  p: '6px 12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  width: 250,
+                  borderRadius: '24px',
+                  backgroundColor: theme.palette.background.paper,
+                  boxShadow: 'none',
+                  border: `1px solid ${
+                    isDark
+                      ? theme.palette.primary.main
+                      : theme.palette.secondary.main
+                  }`,
+                }}>
+                <SearchIcon sx={{ color: 'text.secondary', mr: 1 }} />
+                <InputBase
+                  placeholder='Search tokens...'
+                  sx={{ flex: 1, fontSize: '0.9rem' }}
+                />
+              </Paper>
+            )}
 
             {/* Buttons */}
             {filterOptions.map((opt) => (
