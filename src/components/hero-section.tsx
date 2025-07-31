@@ -38,8 +38,7 @@ const Hero = () => {
               width={140}
               height={140}
               style={{
-                borderRadius: '50%',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                borderRadius: '30%',
                 margin: '0 auto',
               }}
             />
