@@ -90,7 +90,6 @@ const FeaturedTokens = () => {
   return (
     <Box
       sx={{
-        position: 'relative',
         mt: 4,
         py: 4,
         px: 0,
@@ -160,7 +159,6 @@ const FeaturedTokens = () => {
                   fontWeight: 600,
                   fontSize: '0.875rem',
                   borderRadius: '16px',
-                  px: 2.5,
                   py: 1.2,
                   color:
                     selected === opt
