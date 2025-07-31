@@ -91,8 +91,8 @@ const Hero = () => {
                 },
                 lineHeight: 1.6,
               }}>
-              A bold leap into the memeverse. Discover tokens, vote, launch and
-              vibe with the community.
+              A bold leap into the memeverse. Discover tokens, buy/sell, vote,
+              launch your own and vibe with the community.
             </Typography>
           </motion.div>
 
@@ -102,9 +102,12 @@ const Hero = () => {
             color='secondary'
             sx={{
               fontWeight: 'bold',
+              fontSize: '1rem',
               color: theme.palette.secondary.contrastText,
               mb: 1,
               borderRadius: 2,
+              width: 200,
+              height: 48,
               boxShadow: 'none',
               minWidth: 0,
               px: 2,
