@@ -1,6 +1,10 @@
 import { Box, Typography, TextField, Button } from '@mui/material';
 
-export default function BuySellBox({ marketCap }) {
+interface BuySellBoxProps {
+  marketCap: number;
+}
+
+export default function BuySellBox({ marketCap }: BuySellBoxProps) {
   return (
     <Box border="1px solid #ccc" borderRadius={2} p={3}>
       <Typography fontWeight={700}>Market Cap Progress:</Typography>
