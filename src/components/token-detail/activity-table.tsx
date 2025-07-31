@@ -70,6 +70,7 @@ const activityData = [
 ];
 
 export default function ActivityTable() {
+  const theme = useTheme();
   const { mode } = useThemeMode();
   const isDarkMode = mode === 'dark';
   return (
@@ -80,7 +81,16 @@ export default function ActivityTable() {
 
       <TableContainer component={Paper} elevation={2}>
         <Table size='small'>
-          <TableHead>
+          <TableHead
+            sx={{
+              backgroundColor: theme.palette.background.default,
+              border: '1px solid',
+              borderColor: isDarkMode ? 'white' : 'grey',
+              '& th': {
+                fontWeight: 600,
+                color: isDarkMode ? '#fff' : '#000',
+              },
+            }}>
             <TableRow>
               <TableCell>Age</TableCell>
               <TableCell>Type</TableCell>
