@@ -23,7 +23,9 @@ const Hero = () => {
           overflow: 'hidden',
           borderBottomLeftRadius: { xs: 24, md: 40 },
           borderBottomRightRadius: { xs: 24, md: 40 },
-          background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+          background: isDarkMode
+            ? `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`
+            : `linear-gradient(45deg,  #391e6bff, ${theme.palette.primary.main})`,
         }}>
         {/* Content Box with max-width to match FeaturedTokens */}
         <Box
@@ -57,7 +59,9 @@ const Hero = () => {
               component='h1'
               fontWeight={800}
               sx={{
-                background: 'linear-gradient(to right, #fff, #fdea2e)',
+                background: isDarkMode
+                  ? theme.palette.background.default
+                  : 'linear-gradient(to right, #fff, #fdea2e)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 fontSize: {

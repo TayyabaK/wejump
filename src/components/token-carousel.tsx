@@ -4,7 +4,6 @@ import { Box, useMediaQuery, useTheme, Typography } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import BoltIcon from '@mui/icons-material/Bolt';
 import type { TypographyProps } from '@mui/material';
 
 const tokens = [
@@ -183,26 +182,6 @@ const TokenCarousel = () => {
         my: 2,
       }}>
       <AnimatePresence>{cardPositions.map(renderCard)}</AnimatePresence>
-
-      <Box
-        sx={{
-          position: 'absolute',
-          right: { xs: 8, sm: 16 },
-          zIndex: 4,
-          color: theme.palette.secondary.main,
-        }}>
-        <BoltIcon
-          sx={{
-            fontSize: isMobile ? 24 : 32,
-            animation: 'pulse 1.5s infinite',
-            '@keyframes pulse': {
-              '0%': { opacity: 0.6, transform: 'scale(1)' },
-              '50%': { opacity: 1, transform: 'scale(1.2)' },
-              '100%': { opacity: 0.6, transform: 'scale(1)' },
-            },
-          }}
-        />
-      </Box>
     </Box>
   );
 };
