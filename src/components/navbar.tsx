@@ -54,7 +54,6 @@ const Navbar = () => {
           mb: 2,
           minHeight: '64px !important',
         }}>
-        {/* Left: Company Logo + Name + (optional search) */}
         <Stack direction='row' alignItems='center' spacing={2}>
           {/* Search on md+ */}
           {!isMobile && (
@@ -62,7 +61,6 @@ const Navbar = () => {
               sx={{
                 display: 'flex',
                 alignItems: 'center',
-                borderRadius: 2,
                 px: 1.5,
                 py: 0.5,
                 ml: 10,
@@ -71,6 +69,7 @@ const Navbar = () => {
                   ? theme.palette.background.paper
                   : theme.palette.background.default,
                 border: `1px solid ${theme.palette.divider}`,
+                borderRadius: '24px',
                 color: theme.palette.text.primary,
               }}>
               <SearchIcon

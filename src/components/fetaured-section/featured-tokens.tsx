@@ -125,7 +125,7 @@ const FeaturedTokens = () => {
                 alignItems: 'center',
                 width: 250,
                 borderRadius: '24px',
-                backgroundColor: isDark ? '#2c2c3a' : '#f7f7f7',
+                backgroundColor: theme.palette.background.paper,
                 boxShadow: 'none',
               }}>
               <SearchIcon sx={{ color: 'text.secondary', mr: 1 }} />
