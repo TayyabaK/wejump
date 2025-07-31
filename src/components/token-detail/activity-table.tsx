@@ -86,7 +86,15 @@ export default function ActivityTable() {
               <TableCell>Type</TableCell>
               <TableCell>SOL</TableCell>
               <TableCell>Nutter</TableCell>
-              <TableCell>Account</TableCell>
+              <TableCell align='right'>
+                <Box
+                  display='flex'
+                  justifyContent='flex-end'
+                  alignItems='center'
+                  gap={1}>
+                  Account
+                </Box>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
