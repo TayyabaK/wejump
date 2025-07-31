@@ -17,6 +17,7 @@ const Hero = () => {
           px: { xs: 2, md: 6 },
           py: { xs: 4, md: 6 },
           zIndex: 1,
+          overflow: 'hidden',
           borderBottomLeftRadius: { xs: 24, md: 40 },
           borderBottomRightRadius: { xs: 24, md: 40 },
           background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
