@@ -90,6 +90,12 @@ const Sidebar = () => {
         variant={isMobile ? 'temporary' : 'permanent'}
         open={isMobile ? open : true}
         onClose={toggleDrawer}
+        ModalProps={{
+          keepMounted: true, // Better open performance on mobile
+        }}
+        BackdropProps={{
+          onClick: toggleDrawer,
+        }}
         sx={{
           '& .MuiDrawer-paper': {
             width: currentWidth,

@@ -9,13 +9,15 @@ import {
   Paper,
   Button,
   useTheme,
-  useMediaQuery
+  useMediaQuery,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import TokenCard from './token-card';
+import { useRouter } from 'next/navigation';
 
 const mockTokens = [
   {
+    id: '1',
     name: 'PJ',
     symbol: 'PJ',
     logo: '/sample/token-1.webp',
@@ -24,6 +26,7 @@ const mockTokens = [
     updated: '1m',
   },
   {
+    id: '2',
     name: 'Stick',
     symbol: 'STK',
     logo: '/sample/token-2.webp',
@@ -32,6 +35,7 @@ const mockTokens = [
     updated: '21m',
   },
   {
+    id: '3',
     name: 'USD',
     symbol: 'USD',
     logo: '/sample/token-3.jpeg',
@@ -40,6 +44,7 @@ const mockTokens = [
     updated: '54m',
   },
   {
+    id: '4',
     name: 'TitTok',
     symbol: 'TTK',
     logo: '/sample/token-4.webp',
@@ -48,6 +53,7 @@ const mockTokens = [
     updated: '3m',
   },
   {
+    id: '5',
     name: 'SUS',
     symbol: 'SUS',
     logo: '/sample/token-5.webp',
@@ -56,6 +62,7 @@ const mockTokens = [
     updated: '14m',
   },
   {
+    id: '6',
     name: 'usb',
     symbol: 'USB',
     logo: '/sample/token-6.webp',
@@ -78,6 +85,7 @@ const FeaturedTokens = () => {
   const [selected, setSelected] = useState('Last Trade');
   const isDark = theme.palette.mode === 'dark';
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const router = useRouter();
 
   return (
     <Box
@@ -204,7 +212,20 @@ const FeaturedTokens = () => {
             {[...Array(6)]
               .flatMap(() => mockTokens)
               .map((token, index) => (
-                <TokenCard key={index} {...token} />
+                <Box
+                  key={index}
+                  onClick={() => router.push(`/token/${token.id}`)}
+                  sx={{
+                    cursor: 'pointer',
+                    width: '100%',
+                    maxWidth: 400,
+                    transition: 'transform 0.2s ease-in-out',
+                    '&:hover': {
+                      transform: 'scale(1.02)',
+                    },
+                  }}>
+                  <TokenCard {...token} />
+                </Box>
               ))}
           </Box>
         </Box>
