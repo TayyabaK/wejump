@@ -79,8 +79,8 @@ const TokenCard: React.FC<TokenCardProps> = ({
           position: 'absolute',
           top: 16,
           right: 32,
-          width: { xs: 64, sm: 80, md: 100, lg: 110 },
-          height: { xs: 90, sm: 110, md: 130, lg: 150 },
+          width: 110,
+          height: 150,
           borderRadius: 2,
           boxShadow: theme.shadows[2],
           border: `2px solid ${
