@@ -80,7 +80,7 @@ const TokenCard: React.FC<TokenCardProps> = ({
           top: 16,
           right: 32,
           width: {
-            xs: '30%',
+            xs: '25%',
             sm: '28%',
             md: '27%',
           },
