@@ -1,6 +1,14 @@
 import { Box, Typography, Chip } from '@mui/material';
 
-export default function TokenHeader({ name, creator, contract, marketCap, createdAt }) {
+interface TokenHeaderProps {
+  name: string;
+  creator: string;
+  contract: string;
+  marketCap: number;
+  createdAt: string;
+}
+
+export default function TokenHeader({ name, creator, contract, marketCap, createdAt }: TokenHeaderProps) {
   return (
     <Box display="flex" alignItems="center" justifyContent="space-between" flexWrap="wrap" p={2}>
       <Box>

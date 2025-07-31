@@ -7,7 +7,11 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-export default function TokenInfoAccordion({ info }) {
+type TokenInfoAccordionProps = {
+  info: Record<string, string | number>;
+};
+
+export default function TokenInfoAccordion({ info }: TokenInfoAccordionProps) {
   return (
     <Accordion defaultExpanded>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
