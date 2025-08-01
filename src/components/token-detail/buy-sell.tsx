@@ -174,7 +174,7 @@ export default function BuySellWidget() {
               label={isBuy ? 'SOL' : '$Nutter'}
               size='small'
               sx={{
-                bgcolor: isBuy ? buyColor : sellColor,
+                backgroundColor: isBuy ? buyColor : sellColor,
                 color: theme,
                 fontWeight: 600,
               }}
