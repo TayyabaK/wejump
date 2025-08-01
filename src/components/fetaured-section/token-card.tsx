@@ -92,7 +92,7 @@ const TokenCard: React.FC<TokenCardProps> = ({
       {/* Name & Symbol */}
       <Box mb={2} sx={{ textAlign: 'left' }}>
         <Typography
-          variant='h6'
+          variant='h5' // Changed from h6 to h5
           fontWeight={700}
           noWrap
           sx={{ display: 'block' }}>
@@ -100,12 +100,12 @@ const TokenCard: React.FC<TokenCardProps> = ({
         </Typography>
         <Chip
           label={symbol}
-          size='small'
+          size='medium' // Changed from small to medium
           sx={{
             bgcolor: isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)',
             color: 'text.secondary',
-            height: 24,
-            fontSize: '0.75rem',
+            height: 28, // Increased from 24
+            fontSize: '0.875rem', // Increased from 0.75rem
             mt: 0.5,
           }}
         />
@@ -113,18 +113,18 @@ const TokenCard: React.FC<TokenCardProps> = ({
 
       {/* Contract Address */}
       <Box display='flex' alignItems='center' mb={3}>
-        <Typography variant='caption' color='text.secondary' mr={1}>
-          Contract:
+        <Typography variant='body2' color='text.secondary' mr={1}>
+          {'CA: '}
         </Typography>
         <Typography
-          variant='caption'
+          variant='body2' // Changed from caption to body2
           fontWeight={600}
           sx={{ fontFamily: 'monospace', mr: 1 }}>
           {ca?.slice(0, 6)}...{ca?.slice(-4)}
         </Typography>
         <Tooltip title='Copy Address'>
           <IconButton size='small' sx={{ p: 0.5 }}>
-            <ContentCopyIcon sx={{ fontSize: 16 }} />
+            <ContentCopyIcon sx={{ fontSize: 18 }} /> {/* Increased from 16 */}
           </IconButton>
         </Tooltip>
       </Box>
@@ -132,8 +132,9 @@ const TokenCard: React.FC<TokenCardProps> = ({
       {/* Market Cap */}
       <Box mb={2}>
         <Box display='flex' alignItems='center' mb={0.5}>
-          <TrendingUpIcon fontSize='small' sx={{ color: capColor, mr: 1 }} />
-          <Typography variant='body2' sx={{ color: capColor }}>
+          <TrendingUpIcon fontSize='medium' sx={{ color: capColor, mr: 1 }} />{' '}
+          <Typography variant='body1' sx={{ color: capColor }}>
+            {' '}
             MarketCap : ${marketCap.toLocaleString()}
           </Typography>
         </Box>
@@ -141,7 +142,7 @@ const TokenCard: React.FC<TokenCardProps> = ({
           variant='determinate'
           value={Math.min((marketCap / 60000) * 100, 100)}
           sx={{
-            height: 8,
+            height: 10, // Increased from 8
             width: '100%',
             borderRadius: 4,
             backgroundColor: isDarkMode
@@ -161,7 +162,8 @@ const TokenCard: React.FC<TokenCardProps> = ({
         justifyContent='space-between'
         alignItems='center'
         mt='auto'>
-        <Typography variant='caption' color='text.secondary'>
+        <Typography variant='body2' color='text.secondary'>
+          {' '}
           {updated} ago
         </Typography>
         <Box
@@ -171,7 +173,9 @@ const TokenCard: React.FC<TokenCardProps> = ({
             py: 0.5,
             borderRadius: 2,
           }}>
-          <Typography variant='caption' fontWeight={500}>
+          <Typography variant='body2' fontWeight={500}>
+            {' '}
+            {/* Changed from caption to body2 */}
             {Math.floor((marketCap / 60000) * 100)}%
           </Typography>
         </Box>
