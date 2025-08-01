@@ -11,56 +11,44 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {
-  AccountBalanceWallet,
+  AccountBalance,
   AttachMoney,
-  Code,
   DateRange,
-  Group,
   Link,
   LockClock,
-  ShowChart,
-  Storage,
   Timeline,
   Token,
-  TrendingUp,
+  Person,
 } from '@mui/icons-material';
 import { useThemeMode } from '@/theme/theme-context';
+import { themeExtra } from '@/theme/theme-extra';
 
 type TokenInfoAccordionProps = {
   info: Record<string, string | number>;
 };
 
 const getIconForLabel = (label: string) => {
-  switch (label.toLowerCase()) {
-    case 'contract':
-      return <Code fontSize='small' />;
-    case 'market cap':
+  switch (true) {
+    case /supply/i.test(label) && !/total/i.test(label):
+      return <AccountBalance fontSize='small' />;
+    case /trade fees/i.test(label):
       return <AttachMoney fontSize='small' />;
-    case 'holders':
-      return <Group fontSize='small' />;
-    case 'launch date':
+    case /created/i.test(label):
       return <DateRange fontSize='small' />;
-    case 'liquidity':
-      return <AccountBalanceWallet fontSize='small' />;
-    case 'volume':
-      return <ShowChart fontSize='small' />;
-    case 'price':
-      return <TrendingUp fontSize='small' />;
-    case 'website':
+    case /developer address/i.test(label):
+      return <Person fontSize='small' />;
+    case /contract address/i.test(label):
       return <Link fontSize='small' />;
-    case 'blockchain':
-      return <Storage fontSize='small' />;
-    case 'locked':
+    case /locked/i.test(label):
       return <LockClock fontSize='small' />;
-    case 'total supply':
+    case /total supply/i.test(label):
       return <Token fontSize='small' />;
-    case 'price change':
+    case /price change/i.test(label):
       return <Timeline fontSize='small' />;
     default:
       return <Token fontSize='small' />;
   }
 };
-
 export default function TokenInfoAccordion({ info }: TokenInfoAccordionProps) {
   const theme = useTheme();
   const { mode } = useThemeMode();
@@ -76,7 +64,9 @@ export default function TokenInfoAccordion({ info }: TokenInfoAccordionProps) {
         defaultExpanded
         elevation={2}
         sx={{
-          backgroundColor: theme.palette.background.paper,
+          backgroundColor: isDarkMode
+            ? themeExtra.purple.dark
+            : theme.palette.background.paper,
           border: '1px solid',
           borderColor: isDarkMode ? '#ffffff' : '#A9A9A9',
         }}>
