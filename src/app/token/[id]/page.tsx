@@ -17,6 +17,7 @@ export default function TokenDetailsPage() {
         contract={contract}
         marketCap={marketCap}
         createdAt={created}
+        logoUrl={'/sample/token-1.webp'} // Replace with actual logo URL
       />
 
       {/* Chart & BuySellBox layout */}
