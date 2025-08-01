@@ -55,10 +55,11 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}>
             <Typography
-              variant='h3'
+              variant='h1'
               component='h1'
-              fontWeight={800}
               sx={{
+                fontFamily: 'var(--font-sora), sans-serif',
+                fontWeight: 800,
                 background: isDarkMode
                   ? theme.palette.background.default
                   : 'linear-gradient(to right, #fff, #fdea2e)',
@@ -73,17 +74,7 @@ const Hero = () => {
                 mt: 2,
                 lineHeight: 1.2,
               }}>
-              <Box
-                sx={{
-                  display: 'inline',
-                  background: isDarkMode
-                    ? theme.palette.background.default
-                    : 'linear-gradient(to right, #fff, #fdea2e)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                }}>
-                Welcome to <strong>WeJump</strong>
-              </Box>
+              Welcome to WeJump
             </Typography>
           </motion.div>
 

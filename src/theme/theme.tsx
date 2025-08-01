@@ -3,7 +3,7 @@ import { createTheme } from '@mui/material/styles';
 
 const commonSettings = {
   typography: {
-    fontFamily: 'Sora, sans-serif',
+    fontFamily: 'var(--font-sora), sans-serif',
   },
 };
 

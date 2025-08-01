@@ -5,8 +5,14 @@ import { ThemeProvider } from '../theme/theme-context';
 import Navbar from '../components/navbar';
 import { LanguageProvider } from '@/i18n/language-context';
 import { Box } from '@mui/material';
-import '@fontsource/sora'; // defaults to 400 weight
 import Footer from '@/components/footer';
+import { Sora } from 'next/font/google';
+
+const sora = Sora({
+  subsets: ['latin'],
+  weight: ['400', '600', '700', '800'], // ✅ This enables bold/heavy font usage
+  variable: '--font-sora',
+});
 
 export const metadata: Metadata = {
   title: 'WeJump – Meme Token Launchpad',
@@ -20,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body>
+      <body className={sora.variable}>
         <LanguageProvider>
           <ThemeProvider>
             {/* Sidebar should be first in DOM but with lower z-index */}
@@ -30,7 +36,7 @@ export default function RootLayout({
                 top: 0,
                 left: 0,
                 height: '100%',
-                zIndex: 200, 
+                zIndex: 200,
               }}>
               <Sidebar />
             </Box>

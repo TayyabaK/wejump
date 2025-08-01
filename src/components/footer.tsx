@@ -112,13 +112,22 @@ const Footer = () => {
           </Box>
         </Stack>
 
+        {/* Middle - Copyright Text */}
+        <Typography
+          variant='body2'
+          align='center'
+          color='text.secondary'
+          sx={{ mt: 3 }}>
+          © {new Date().getFullYear()} wejump.fun – All Rights Reserved.
+        </Typography>
+
         {/* Powered By Text - Centered below */}
         <Typography
           variant='caption'
           color='text.secondary'
           align='center'
           display='block'
-          sx={{ mt: 3 }}>
+          sx={{ mt: 1 }}>
           Powered by{' '}
           <a
             href='https://brdigitech.com'
