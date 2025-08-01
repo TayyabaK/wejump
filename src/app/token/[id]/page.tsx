@@ -1,13 +1,17 @@
 'use client';
-import { Box, Container } from '@mui/material';
+import { Box, Container, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import TokenHeader from '@/components/token-detail/token-header';
-import TokenChart from '@/components/token-detail/token-chart';
+import TradingViewChart from '@/components/token-detail/token-chart';
 import BuySellBox from '@/components/token-detail/buy-sell';
 import { tokenData } from '@/components/token-detail/token-mock';
 import TabsSection from '../../../components/token-detail/tab-section';
 
 export default function TokenDetailsPage() {
   const { name, developer, contract, marketCap, created } = tokenData;
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <Container maxWidth='xl' sx={{ mt: 4 }}>
@@ -20,36 +24,54 @@ export default function TokenDetailsPage() {
         logoUrl={'/sample/token-1.webp'} // Replace with actual logo URL
       />
 
-      {/* Chart & BuySellBox layout */}
       <Box
         sx={{
           display: 'flex',
-          flexDirection: { xs: 'column', md: 'row' },
+          flexDirection: 'column',
           gap: 4,
           mt: 4,
-          alignItems: 'flex-start', // Align items to the top
         }}>
-        {/* Left Column - Chart and Tabs */}
-        <Box
-          sx={{
-            flex: 2,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 4,
-          }}>
-          <TokenChart />
-          <TabsSection />
-        </Box>
+        {/* Mobile Order: BuySell -> Chart -> Tabs */}
+        {isMobile && (
+          <>
+            <BuySellBox />
+            <TradingViewChart />
+            <TabsSection />
+          </>
+        )}
 
-        {/* Right Column - BuySellBox */}
-        <Box
-          sx={{
-            flex: 1,
-            position: { md: 'sticky' },
-            top: 20, // Adjust this value as needed for your header height
-          }}>
-          <BuySellBox />
-        </Box>
+        {/* Desktop Order: Chart + Tabs (left), BuySellBox (right) */}
+        {!isMobile && (
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: 4,
+              alignItems: 'flex-start',
+            }}>
+            {/* Left Column */}
+            <Box
+              sx={{
+                flex: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 4,
+              }}>
+              <TradingViewChart />
+              <TabsSection />
+            </Box>
+
+            {/* Right Column - Sticky BuySellBox */}
+            <Box
+              sx={{
+                flex: 1,
+                position: 'sticky',
+                top: 20,
+              }}>
+              <BuySellBox />
+            </Box>
+          </Box>
+        )}
       </Box>
     </Container>
   );

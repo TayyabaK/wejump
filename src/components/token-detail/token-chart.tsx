@@ -1,10 +1,14 @@
+'use client';
+
 import React from 'react';
 import ReactECharts from 'echarts-for-react';
-import { useTheme } from '@mui/material/styles';
+import { useTheme, useMediaQuery } from '@mui/material';
 
 const TradingViewChart = () => {
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
 
   // Sample candlestick data (OHLC format)
   const data = [
@@ -23,15 +27,11 @@ const TradingViewChart = () => {
       : theme.palette.background.paper,
     tooltip: {
       trigger: 'axis',
-      axisPointer: {
-        type: 'cross',
-      },
+      axisPointer: { type: 'cross' },
       backgroundColor: isDarkMode
         ? theme.palette.background.paper
         : theme.palette.background.default,
-      textStyle: {
-        color: theme.palette.text.primary,
-      },
+      textStyle: { color: theme.palette.text.primary },
       borderColor: theme.palette.divider,
     },
     legend: {
@@ -42,18 +42,15 @@ const TradingViewChart = () => {
       },
     },
     grid: {
-      left: '10%',
-      right: '10%',
-      bottom: '15%',
+      left: '5%',
+      right: '5%',
+      bottom: '12%',
+      top: '10%',
     },
     xAxis: {
       type: 'category',
       data: data.map((item) => item[0]),
-      axisLine: {
-        lineStyle: {
-          color: theme.palette.divider,
-        },
-      },
+      axisLine: { lineStyle: { color: theme.palette.divider } },
       axisLabel: {
         color: theme.palette.text.primary,
         fontFamily: theme.typography.fontFamily,
@@ -61,11 +58,7 @@ const TradingViewChart = () => {
     },
     yAxis: {
       scale: true,
-      axisLine: {
-        lineStyle: {
-          color: theme.palette.divider,
-        },
-      },
+      axisLine: { lineStyle: { color: theme.palette.divider } },
       splitLine: {
         lineStyle: {
           color: theme.palette.divider,
@@ -81,15 +74,10 @@ const TradingViewChart = () => {
       {
         name: 'K-Line',
         type: 'candlestick',
-        data: data.map((item) => [
-          item[1], // Open
-          item[2], // Close
-          item[3], // Low
-          item[4], // High
-        ]),
+        data: data.map((item) => [item[1], item[2], item[3], item[4]]),
         itemStyle: {
-          color: theme.palette.success.main, // Green for up
-          color0: theme.palette.error.main, // Red for down
+          color: theme.palette.success.main,
+          color0: theme.palette.error.main,
           borderColor: theme.palette.success.main,
           borderColor0: theme.palette.error.main,
         },
@@ -99,30 +87,24 @@ const TradingViewChart = () => {
             fontFamily: theme.typography.fontFamily,
           },
           data: [
-            {
-              name: 'Highest',
-              type: 'max',
-              valueDim: 'highest',
-            },
-            {
-              name: 'Lowest',
-              type: 'min',
-              valueDim: 'lowest',
-            },
+            { name: 'Highest', type: 'max', valueDim: 'highest' },
+            { name: 'Lowest', type: 'min', valueDim: 'lowest' },
           ],
         },
       },
     ],
   };
 
+  const dynamicHeight = isMobile ? 300 : isTablet ? 400 : 500;
+
   return (
-    <div style={{ width: '100%', height: '500px' }}>
+    <div style={{ width: '100%', height: `${dynamicHeight}px` }}>
       <ReactECharts
         option={option}
         style={{ height: '100%', width: '100%' }}
         theme={isDarkMode ? 'dark' : 'light'}
-        notMerge={true}
-        lazyUpdate={true}
+        notMerge
+        lazyUpdate
       />
     </div>
   );

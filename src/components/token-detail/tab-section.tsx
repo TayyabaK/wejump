@@ -78,8 +78,8 @@ export default function TabsSection() {
       <Box>
         {selectedTab === 'Replies' && <Replies />}
         {selectedTab === 'Coin Info' && <TokenInfoAccordion info={coinInfo} />}
-        {selectedTab === 'Activity' && <ActivityTable />}
-        {selectedTab === 'Top Holders' && <TokenHoldersTable />}
+        {/* {selectedTab === 'Activity' && <ActivityTable />}
+        {selectedTab === 'Top Holders' && <TokenHoldersTable />} */}
       </Box>
     </Box>
   );
