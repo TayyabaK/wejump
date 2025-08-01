@@ -65,7 +65,7 @@ export default function TokenInfoAccordion({ info }: TokenInfoAccordionProps) {
         elevation={2}
         sx={{
           backgroundColor: isDarkMode
-            ? themeExtra.purple.dark
+            ? themeExtra.purple.main
             : theme.palette.background.paper,
           border: '1px solid',
           borderColor: isDarkMode ? '#ffffff' : '#A9A9A9',

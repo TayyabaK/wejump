@@ -116,10 +116,10 @@ export default function ActivityTable() {
                   backgroundColor: isDarkMode
                     ? index % 2 === 0
                       ? themeExtra.purple.dark
-                      : themeExtra.purple.light
+                      : themeExtra.purple.main
                     : index % 2 === 0
-                    ? themeExtra.white.light
-                    : themeExtra.white.dark,
+                    ? themeExtra.white.dark
+                    : themeExtra.white.main,
                   '&:not(:last-child)': {
                     borderBottom: '1px solid',
                     borderColor: isDarkMode ? '#ffffff' : '#A9A9A9',

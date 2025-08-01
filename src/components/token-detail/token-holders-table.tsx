@@ -73,7 +73,7 @@ export default function TokenHoldersTable() {
                   backgroundColor: isDarkMode
                     ? index % 2 === 0
                       ? themeExtra.purple.dark
-                      : themeExtra.purple.light
+                      : themeExtra.purple.main
                     : index % 2 === 0
                     ? themeExtra.white.light
                     : themeExtra.white.dark,
