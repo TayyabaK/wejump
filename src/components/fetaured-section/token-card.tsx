@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import { themeExtra } from '@/theme/theme-extra';
 
 interface TokenCardProps {
   name: string;
@@ -43,7 +44,9 @@ const TokenCard: React.FC<TokenCardProps> = ({
     <Card
       variant='outlined'
       sx={{
-        bgcolor: 'background.paper',
+        bgcolor: isDarkMode
+          ? themeExtra.purple.dark
+          : theme.palette.background.paper,
         borderRadius: 4,
         p: 3,
         pt: 4.5,

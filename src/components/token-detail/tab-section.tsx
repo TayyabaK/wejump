@@ -15,7 +15,7 @@ const coinInfo = {
   'Developer Address': '3SMx...eJrA',
 };
 
-const tabOptions = ['Replies', 'Coin Info', 'Activity', 'Top Holders'];
+const tabOptions = ['Coin Info', 'Replies', 'Activity', 'Top Holders'];
 
 export default function TabsSection() {
   const [selectedTab, setSelectedTab] = useState('Coin Info');
@@ -78,8 +78,8 @@ export default function TabsSection() {
       <Box>
         {selectedTab === 'Replies' && <Replies />}
         {selectedTab === 'Coin Info' && <TokenInfoAccordion info={coinInfo} />}
-        {/* {selectedTab === 'Activity' && <ActivityTable />}
-        {selectedTab === 'Top Holders' && <TokenHoldersTable />} */}
+        {selectedTab === 'Activity' && <ActivityTable />}
+        {selectedTab === 'Top Holders' && <TokenHoldersTable />}
       </Box>
     </Box>
   );

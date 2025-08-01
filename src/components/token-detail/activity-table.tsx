@@ -75,11 +75,33 @@ export default function ActivityTable() {
   const { mode } = useThemeMode();
   const isDarkMode = mode === 'dark';
   return (
-    <Box mt={4}>
+    <Box
+      mt={4}
+      sx={{
+        '& ::-webkit-scrollbar': {
+          height: '8px',
+        },
+        '& ::-webkit-scrollbar-track': {
+          background: isDarkMode
+            ? themeExtra.purple.dark
+            : theme.palette.grey[100],
+        },
+        '& ::-webkit-scrollbar-thumb': {
+          background: isDarkMode
+            ? theme.palette.primary.main
+            : theme.palette.secondary.main,
+          borderRadius: '4px',
+        },
+        '& ::-webkit-scrollbar-thumb:hover': {
+          background: isDarkMode
+            ? theme.palette.primary.dark
+            : theme.palette.secondary.dark,
+        },
+      }}>
+      {' '}
       <Typography variant='h6' fontWeight={700} mb={2}>
         Activity
       </Typography>
-
       <TableContainer component={Paper} elevation={2}>
         <Table size='small'>
           <TableHead
