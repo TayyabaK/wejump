@@ -163,7 +163,7 @@ export default function TokenHeader({
         width={isSmallScreen ? '100%' : 'auto'}
         mt={isSmallScreen ? 1 : 0}>
         <Chip
-          label={`$${marketCap.toLocaleString()}`}
+          label={`Market Cap: ${marketCap.toLocaleString()}`}
           size={isSmallScreen ? 'medium' : 'small'}
           icon={
             <Box
@@ -171,7 +171,9 @@ export default function TokenHeader({
                 width: 10,
                 height: 10,
                 borderRadius: '50%',
-                backgroundColor: theme.palette.primary.main,
+                backgroundColor: isDarkMode
+                  ? theme.palette.primary.main
+                  : theme.palette.secondary.main,
                 mr: 0.5,
               }}
             />
@@ -189,7 +191,7 @@ export default function TokenHeader({
           }}
         />
         <Chip
-          label={createdAt}
+          label={`Created at: ${createdAt}`}
           size={isSmallScreen ? 'medium' : 'small'}
           sx={{
             backgroundColor: isDarkMode
