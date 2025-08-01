@@ -175,7 +175,7 @@ export default function BuySellWidget() {
               size='small'
               sx={{
                 backgroundColor: isBuy ? buyColor : sellColor,
-                color: theme,
+                color: '#ffffff', // Changed from theme to white
                 fontWeight: 600,
               }}
             />
