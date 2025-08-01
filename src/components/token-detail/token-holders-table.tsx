@@ -16,6 +16,7 @@ import {
   useTheme,
 } from '@mui/material';
 import { useThemeMode } from '@/theme/theme-context';
+import { themeExtra } from '@/theme/theme-extra';
 
 const holdersData = [
   { rank: 1, holder: '9A72...PUVQ', percent: 28.82 },
@@ -34,6 +35,7 @@ export default function TokenHoldersTable() {
   const { mode } = useThemeMode();
   const theme = useTheme();
   const isDarkMode = mode === 'dark';
+
   return (
     <Box mt={4}>
       <Typography variant='h6' fontWeight={700} mb={2}>
@@ -58,19 +60,27 @@ export default function TokenHoldersTable() {
               },
             }}>
             <TableRow>
-              <TableCell sx={{ width: '33%' }}>#</TableCell>
-              <TableCell sx={{ width: '33%' }}>Holder</TableCell>
-              <TableCell sx={{ width: '33%' }} align='right'>
-                %
-              </TableCell>
+              <TableCell>#</TableCell>
+              <TableCell>Holder</TableCell>
+              <TableCell align='right'>%</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {holdersData.map((row) => (
-              <TableRow key={row.rank} sx={{ height: '48px' }}>
+            {holdersData.map((row, index) => (
+              <TableRow
+                key={row.rank}
+                sx={{
+                  backgroundColor: isDarkMode
+                    ? index % 2 === 0
+                      ? themeExtra.purple.dark
+                      : themeExtra.purple.light
+                    : index % 2 === 0
+                    ? themeExtra.white.light
+                    : themeExtra.white.dark,
+                  height: '48px',
+                }}>
                 <TableCell
                   sx={{
-                    width: '33%',
                     borderBottom: '1px solid',
                     borderColor: isDarkMode ? '#ffffff' : '#A9A9A9',
                   }}>
@@ -78,7 +88,6 @@ export default function TokenHoldersTable() {
                 </TableCell>
                 <TableCell
                   sx={{
-                    width: '33%',
                     borderBottom: '1px solid',
                     borderColor: isDarkMode ? '#ffffff' : '#A9A9A9',
                   }}>
@@ -103,7 +112,6 @@ export default function TokenHoldersTable() {
                 <TableCell
                   align='right'
                   sx={{
-                    width: '33%',
                     borderBottom: '1px solid',
                     borderColor: isDarkMode ? '#ffffff' : '#A9A9A9',
                   }}>

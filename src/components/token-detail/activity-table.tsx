@@ -16,6 +16,7 @@ import {
   useTheme,
 } from '@mui/material';
 import { useThemeMode } from '@/theme/theme-context';
+import { themeExtra } from '@/theme/theme-extra';
 
 const activityData = [
   {
@@ -112,11 +113,18 @@ export default function ActivityTable() {
               <TableRow
                 key={index}
                 sx={{
+                  backgroundColor: isDarkMode
+                    ? index % 2 === 0
+                      ? themeExtra.purple.dark
+                      : themeExtra.purple.light
+                    : index % 2 === 0
+                    ? themeExtra.white.light
+                    : themeExtra.white.dark,
                   '&:not(:last-child)': {
                     borderBottom: '1px solid',
-                    borderColor: isDarkMode ? 'white' : 'grey',
+                    borderColor: isDarkMode ? '#ffffff' : '#A9A9A9',
                   },
-                  height: '48px', // Increased row height (1.5x default)
+                  height: '48px',
                 }}>
                 <TableCell
                   sx={{
