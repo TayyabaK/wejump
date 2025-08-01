@@ -12,11 +12,20 @@ import {
   Chip,
   Stack,
 } from '@mui/material';
+import { themeExtra } from '@/theme/theme-extra';
+import { useThemeMode } from '@/theme/theme-context';
 
 export default function BuySellWidget() {
   const theme = useTheme();
   const [mode, setMode] = useState<'buy' | 'sell'>('buy');
+  const { mode: themeMode } = useThemeMode();
+  const isDarkMode = themeMode === 'dark';
   const isBuy = mode === 'buy';
+
+  const buyColor = '#4CAF50'; // Green
+  const buyDark = '#388E3C';
+  const sellColor = '#FF9800'; // Orange
+  const sellDark = '#F57C00';
 
   const handleModeChange = (
     _: React.MouseEvent<HTMLElement>,
@@ -29,10 +38,10 @@ export default function BuySellWidget() {
     <Box
       sx={{
         borderRadius: 2,
-        border: `1px solid ${
-          isBuy ? theme.palette.primary.main : theme.palette.secondary.main
-        }`,
-        backgroundColor: theme.palette.background.paper,
+        border: `1px solid ${isBuy ? buyColor : sellColor}`,
+        backgroundColor: isDarkMode
+          ? themeExtra.purple.main
+          : theme.palette.background.paper,
         p: 3,
         width: { xs: '100%', sm: 360 },
         boxShadow: theme.shadows[2],
@@ -41,9 +50,7 @@ export default function BuySellWidget() {
       <Box mb={2}>
         <Typography variant='body2' fontWeight={600} color='text.primary'>
           Market Cap Progress:{' '}
-          <Typography
-            component='span'
-            color={isBuy ? 'primary.main' : 'secondary.main'}>
+          <Typography component='span' color={isBuy ? buyColor : sellColor}>
             7.15%
           </Typography>
         </Typography>
@@ -58,9 +65,7 @@ export default function BuySellWidget() {
           <Box
             sx={{
               width: '7.15%',
-              backgroundColor: isBuy
-                ? theme.palette.primary.main
-                : theme.palette.secondary.main,
+              backgroundColor: isBuy ? buyColor : sellColor,
               height: '100%',
               borderRadius: 3,
             }}
@@ -87,18 +92,26 @@ export default function BuySellWidget() {
           value='buy'
           sx={{
             fontWeight: 700,
-            color: isBuy
-              ? theme.palette.primary.contrastText
-              : theme.palette.text.primary,
-            backgroundColor: isBuy ? theme.palette.primary.main : 'transparent',
+            color: isBuy ? '#fff' : theme.palette.text.primary,
+            backgroundColor: isBuy ? buyColor : 'transparent',
             '&:hover': {
-              backgroundColor: isBuy
-                ? theme.palette.primary.dark
-                : theme.palette.action.hover,
+              backgroundColor: isBuy ? buyDark : theme.palette.action.hover,
+              // Reset MUI's default hover styles
+              '@media (hover: hover)': {
+                backgroundColor: isBuy ? buyDark : theme.palette.action.hover,
+              },
             },
             py: 1.5,
             textTransform: 'uppercase',
             letterSpacing: 0.5,
+            // Force the selected state to override any defaults
+            '&.Mui-selected': {
+              backgroundColor: buyColor,
+              color: '#fff',
+              '&:hover': {
+                backgroundColor: buyDark,
+              },
+            },
           }}>
           Buy
         </ToggleButton>
@@ -106,20 +119,24 @@ export default function BuySellWidget() {
           value='sell'
           sx={{
             fontWeight: 700,
-            color: !isBuy
-              ? theme.palette.secondary.contrastText
-              : theme.palette.text.primary,
-            backgroundColor: !isBuy
-              ? theme.palette.secondary.main
-              : 'transparent',
+            color: !isBuy ? '#fff' : theme.palette.text.primary,
+            backgroundColor: !isBuy ? sellColor : 'transparent',
             '&:hover': {
-              backgroundColor: !isBuy
-                ? theme.palette.secondary.dark
-                : theme.palette.action.hover,
+              backgroundColor: !isBuy ? sellDark : theme.palette.action.hover,
+              '@media (hover: hover)': {
+                backgroundColor: !isBuy ? sellDark : theme.palette.action.hover,
+              },
             },
             py: 1.5,
             textTransform: 'uppercase',
             letterSpacing: 0.5,
+            '&.Mui-selected': {
+              backgroundColor: sellColor,
+              color: '#fff',
+              '&:hover': {
+                backgroundColor: sellDark,
+              },
+            },
           }}>
           Sell
         </ToggleButton>
@@ -136,14 +153,10 @@ export default function BuySellWidget() {
           mb: 2,
           '& .MuiOutlinedInput-root': {
             '& fieldset': {
-              borderColor: isBuy
-                ? theme.palette.primary.light
-                : theme.palette.secondary.light,
+              borderColor: isBuy ? buyColor : sellColor,
             },
             '&:hover fieldset': {
-              borderColor: isBuy
-                ? theme.palette.primary.main
-                : theme.palette.secondary.main,
+              borderColor: isBuy ? buyDark : sellDark,
             },
           },
         }}
@@ -161,12 +174,8 @@ export default function BuySellWidget() {
               label={isBuy ? 'SOL' : '$Nutter'}
               size='small'
               sx={{
-                bgcolor: isBuy
-                  ? theme.palette.primary.main
-                  : theme.palette.secondary.main,
-                color: isBuy
-                  ? theme.palette.primary.contrastText
-                  : theme.palette.secondary.contrastText,
+                bgcolor: isBuy ? buyColor : sellColor,
+                color: theme,
                 fontWeight: 600,
               }}
             />
@@ -189,7 +198,7 @@ export default function BuySellWidget() {
       {/* Balance */}
       <Typography
         variant='body2'
-        color={isBuy ? 'primary.main' : 'secondary.main'}
+        color={isBuy ? buyColor : sellColor}
         fontWeight={600}
         mt={1.5}
         mb={1}>
@@ -202,16 +211,10 @@ export default function BuySellWidget() {
           size='small'
           variant='outlined'
           sx={{
-            color: isBuy
-              ? theme.palette.primary.main
-              : theme.palette.secondary.main,
-            borderColor: isBuy
-              ? theme.palette.primary.main
-              : theme.palette.secondary.main,
+            color: isBuy ? buyColor : sellColor,
+            borderColor: isBuy ? buyColor : sellColor,
             '&:hover': {
-              borderColor: isBuy
-                ? theme.palette.primary.dark
-                : theme.palette.secondary.dark,
+              borderColor: isBuy ? buyDark : sellDark,
             },
             flex: 1,
             py: 0.5,
@@ -222,16 +225,10 @@ export default function BuySellWidget() {
           size='small'
           variant='outlined'
           sx={{
-            color: isBuy
-              ? theme.palette.primary.main
-              : theme.palette.secondary.main,
-            borderColor: isBuy
-              ? theme.palette.primary.main
-              : theme.palette.secondary.main,
+            color: isBuy ? buyColor : sellColor,
+            borderColor: isBuy ? buyColor : sellColor,
             '&:hover': {
-              borderColor: isBuy
-                ? theme.palette.primary.dark
-                : theme.palette.secondary.dark,
+              borderColor: isBuy ? buyDark : sellDark,
             },
             flex: 1,
             py: 0.5,

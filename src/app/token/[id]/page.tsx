@@ -40,7 +40,6 @@ export default function TokenDetailsPage() {
           </>
         )}
 
-        {/* Desktop Order: Chart + Tabs (left), BuySellBox (right) */}
         {!isMobile && (
           <Box
             sx={{
@@ -48,14 +47,17 @@ export default function TokenDetailsPage() {
               flexDirection: 'row',
               gap: 4,
               alignItems: 'flex-start',
+              width: '100%',
+              flexGrow: 1,
             }}>
             {/* Left Column */}
             <Box
               sx={{
-                flex: 2,
+                flex: 3,
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 4,
+                minHeight: '80vh', // Adjust as needed
               }}>
               <TradingViewChart />
               <TabsSection />
@@ -67,6 +69,7 @@ export default function TokenDetailsPage() {
                 flex: 1,
                 position: 'sticky',
                 top: 20,
+                minWidth: '300px', // Optional: to keep BuySellBox reasonable
               }}>
               <BuySellBox />
             </Box>
