@@ -49,7 +49,7 @@ export default function TokenHeader({
     <Box
       display='flex'
       flexDirection={isSmallScreen ? 'column' : 'row'}
-      alignItems={isSmallScreen ? 'flex-start' : 'center'}
+      alignItems={isSmallScreen ? 'center' : 'center'}
       justifyContent='space-between'
       flexWrap='wrap'
       gap={isSmallScreen ? 3 : 2}
@@ -63,12 +63,13 @@ export default function TokenHeader({
           isDarkMode ? themeExtra.purple.light : theme.palette.divider
         }`,
         boxShadow: theme.shadows[2],
+        textAlign: isSmallScreen ? 'center' : 'left',
       }}>
       {/* Left: Logo + Name + Creator + Contract */}
       <Box
         display='flex'
-        flexDirection='row'
-        alignItems='center'
+        flexDirection={isSmallScreen ? 'column' : 'row'}
+        alignItems={isSmallScreen ? 'center' : 'center'}
         flexWrap='wrap'
         gap={2}
         width={isSmallScreen ? '100%' : 'auto'}>
@@ -82,7 +83,10 @@ export default function TokenHeader({
             boxShadow: theme.shadows[4],
           }}
         />
-        <Box>
+        <Box
+          display='flex'
+          flexDirection='column'
+          alignItems={isSmallScreen ? 'center' : 'flex-start'}>
           <Typography
             variant='h4'
             fontWeight={800}
@@ -104,7 +108,8 @@ export default function TokenHeader({
           <Typography
             variant='subtitle1'
             color={isDarkMode ? themeExtra.white.shades[300] : 'text.secondary'}
-            mb={1}>
+            mb={1}
+            textAlign={isSmallScreen ? 'center' : 'left'}>
             Created by:{' '}
             <Box
               component='span'
@@ -159,11 +164,12 @@ export default function TokenHeader({
       <Stack
         direction={isSmallScreen ? 'column' : 'row'}
         spacing={1.5}
-        alignItems={isSmallScreen ? 'flex-start' : 'center'}
+        alignItems={isSmallScreen ? 'center' : 'center'}
+        justifyContent={isSmallScreen ? 'center' : 'center'}
         width={isSmallScreen ? '100%' : 'auto'}
         mt={isSmallScreen ? 1 : 0}>
         <Chip
-          label={`Market Cap: ${marketCap.toLocaleString()}`}
+          label={`Market Cap: $${marketCap.toLocaleString()}`}
           size={isSmallScreen ? 'medium' : 'small'}
           icon={
             <Box
@@ -191,7 +197,7 @@ export default function TokenHeader({
           }}
         />
         <Chip
-          label={`Created at: ${createdAt}`}
+          label={`Created: ${createdAt}`}
           size={isSmallScreen ? 'medium' : 'small'}
           sx={{
             backgroundColor: isDarkMode
@@ -214,9 +220,9 @@ export default function TokenHeader({
         direction='row'
         spacing={1}
         alignItems='center'
-        justifyContent={isSmallScreen ? 'flex-start' : 'flex-end'}
+        justifyContent={isSmallScreen ? 'center' : 'flex-end'}
         width={isSmallScreen ? '100%' : 'auto'}
-        mt={isSmallScreen ? 1 : 0}>
+        mt={isSmallScreen ? 2 : 0}>
         {[
           {
             icon: <TwitterIcon />,

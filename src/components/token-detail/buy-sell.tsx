@@ -50,7 +50,13 @@ export default function BuySellWidget() {
       <Box mb={2}>
         <Typography variant='body2' fontWeight={600} color='text.primary'>
           Market Cap Progress:{' '}
-          <Typography component='span' color={isBuy ? buyColor : sellColor}>
+          <Typography
+            component='span'
+            color={
+              isDarkMode
+                ? theme.palette.primary.main
+                : theme.palette.secondary.main
+            }>
             7.15%
           </Typography>
         </Typography>
@@ -65,7 +71,9 @@ export default function BuySellWidget() {
           <Box
             sx={{
               width: '7.15%',
-              backgroundColor: isBuy ? buyColor : sellColor,
+              backgroundColor: isDarkMode
+                ? theme.palette.primary.main
+                : theme.palette.secondary.main,
               height: '100%',
               borderRadius: 3,
             }}

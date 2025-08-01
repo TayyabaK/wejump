@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Box, Button, Paper, useTheme } from '@mui/material';
+import { Box, Button, Paper, useTheme, useMediaQuery } from '@mui/material';
 import TokenInfoAccordion from './token-info-accordion';
 import ActivityTable from './activity-table';
 import TokenHoldersTable from './token-holders-table';
@@ -21,6 +21,7 @@ export default function TabsSection() {
   const [selectedTab, setSelectedTab] = useState('Coin Info');
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <Box>
@@ -34,6 +35,7 @@ export default function TabsSection() {
           display: 'flex',
           gap: 1,
           flexWrap: 'wrap',
+          justifyContent: { xs: 'center', sm: 'flex-start' },
           backgroundColor: theme.palette.background.default,
         }}>
         {tabOptions.map((opt) => (
@@ -46,6 +48,7 @@ export default function TabsSection() {
               borderRadius: '16px',
               py: 1.2,
               px: 2,
+              textAlign: { xs: 'center', sm: 'left' },
               color:
                 selectedTab === opt
                   ? theme.palette.primary.contrastText
