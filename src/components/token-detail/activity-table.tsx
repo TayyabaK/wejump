@@ -85,10 +85,10 @@ export default function ActivityTable() {
             sx={{
               backgroundColor: theme.palette.background.default,
               border: '1px solid',
-              borderColor: isDarkMode ? 'white' : 'grey',
+              borderColor: isDarkMode ? '#ffffff' : '#A9A9A9',
               '& th': {
                 fontWeight: 600,
-                color: isDarkMode ? '#fff' : '#000',
+                color: isDarkMode ? '#ffffff' : '#000',
               },
             }}>
             <TableRow>
@@ -118,8 +118,18 @@ export default function ActivityTable() {
                   },
                   height: '48px', // Increased row height (1.5x default)
                 }}>
-                <TableCell>{row.age}</TableCell>
-                <TableCell>
+                <TableCell
+                  sx={{
+                    borderBottom: '1px solid',
+                    borderColor: isDarkMode ? '#ffffff' : '#A9A9A9',
+                  }}>
+                  {row.age}
+                </TableCell>
+                <TableCell
+                  sx={{
+                    borderBottom: '1px solid',
+                    borderColor: isDarkMode ? '#ffffff' : '#A9A9A9',
+                  }}>
                   <Chip
                     label={row.type}
                     size='small'
@@ -130,9 +140,26 @@ export default function ActivityTable() {
                     }}
                   />
                 </TableCell>
-                <TableCell>{Number(row.sol).toFixed(3)}</TableCell>
-                <TableCell>{row.nutter}</TableCell>
-                <TableCell align='right'>
+                <TableCell
+                  sx={{
+                    borderBottom: '1px solid',
+                    borderColor: isDarkMode ? '#ffffff' : '#A9A9A9',
+                  }}>
+                  {Number(row.sol).toFixed(3)}
+                </TableCell>
+                <TableCell
+                  sx={{
+                    borderBottom: '1px solid',
+                    borderColor: isDarkMode ? '#ffffff' : '#A9A9A9',
+                  }}>
+                  {row.nutter}
+                </TableCell>
+                <TableCell
+                  align='right'
+                  sx={{
+                    borderBottom: '1px solid',
+                    borderColor: isDarkMode ? '#ffffff' : '#A9A9A9',
+                  }}>
                   <Box
                     display='flex'
                     justifyContent='flex-end'

@@ -4,185 +4,178 @@ import React, { useState } from 'react';
 import {
   Box,
   Typography,
-  LinearProgress,
+  Button,
+  TextField,
   ToggleButtonGroup,
   ToggleButton,
-  TextField,
-  InputAdornment,
-  Button,
-  Chip,
   useTheme,
-  Divider,
+  Chip,
+  Stack,
 } from '@mui/material';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
-const BuySellBox = () => {
+export default function BuySellWidget() {
   const theme = useTheme();
-  const isDark = theme.palette.mode === 'dark';
+  const [mode, setMode] = useState<'buy' | 'sell'>('buy');
 
-  const [tab, setTab] = useState<'buy' | 'sell'>('buy');
-  const [slippage, setSlippage] = useState('5');
-  const [amount, setAmount] = useState('0');
+  const handleModeChange = (
+    _: React.MouseEvent<HTMLElement>,
+    newMode: 'buy' | 'sell'
+  ) => {
+    if (newMode !== null) setMode(newMode);
+  };
 
-  const currentCap = 5194.99;
-  const targetCap = 74548.24;
-  const progress = (currentCap / targetCap) * 100;
+  const isBuy = mode === 'buy';
 
   return (
     <Box
       sx={{
-        border: `1px solid ${theme.palette.primary.main}`,
         borderRadius: 2,
+        border: `1px solid ${
+          isBuy ? theme.palette.primary.main : theme.palette.secondary.main
+        }`,
+        backgroundColor: theme.palette.background.paper,
         p: 2,
-        bgcolor: theme.palette.background.paper,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 2,
+        width: 360,
       }}>
       {/* Market Cap Progress */}
-      <Box>
-        <Box display='flex' justifyContent='space-between'>
-          <Typography variant='body2' fontWeight={600}>
-            Market Cap Progress:
+      <Box mb={2}>
+        <Typography variant='body2' fontWeight={600}>
+          Market Cap Progress:{' '}
+          <Typography component='span' color='primary'>
+            7.15%
           </Typography>
-          <Typography
-            variant='body2'
-            fontWeight={600}
-            color={theme.palette.primary.dark}>
-            {progress.toFixed(2)}%
-          </Typography>
-        </Box>
-        <LinearProgress
-          variant='determinate'
-          value={progress}
-          sx={{
-            mt: 0.5,
-            height: 8,
-            borderRadius: 4,
-            backgroundColor: isDark ? '#3c3c3c' : '#e0e0e0',
-            '& .MuiLinearProgress-bar': {
-              backgroundColor: theme.palette.primary.main,
-              borderRadius: 4,
-            },
-          }}
-        />
+        </Typography>
         <Box
-          display='flex'
-          justifyContent='space-between'
-          mt={0.5}
-          fontSize='0.85rem'
-          color='text.secondary'>
-          <Typography variant='caption'>
-            Current: ${currentCap.toLocaleString()}
-          </Typography>
-          <Typography variant='caption'>
-            Target: ${targetCap.toLocaleString()}
-          </Typography>
+          sx={{
+            height: 6,
+            backgroundColor: '#ccc',
+            borderRadius: 3,
+            mt: 0.5,
+            position: 'relative',
+          }}>
+          <Box
+            sx={{
+              width: '7.15%',
+              backgroundColor: isBuy ? '#00b0ff' : '#00b0ff',
+              height: '100%',
+              borderRadius: 3,
+            }}
+          />
         </Box>
+        <Stack direction='row' justifyContent='space-between' mt={0.5}>
+          <Typography variant='caption'>Current: $9,293.48</Typography>
+          <Typography variant='caption'>Target: $69,007.40</Typography>
+        </Stack>
       </Box>
 
-      {/* Buy/Sell Toggle */}
+      {/* Toggle Buttons */}
       <ToggleButtonGroup
-        value={tab}
+        value={mode}
         exclusive
-        onChange={(e, newTab) => newTab && setTab(newTab)}
+        onChange={handleModeChange}
         fullWidth
-        sx={{
-          mt: 1,
-          '& .MuiToggleButton-root': {
-            flex: 1,
-            fontWeight: 'bold',
-            fontSize: '1rem',
-            border: 'none',
-            borderRadius: 1,
-            color: theme.palette.text.primary,
-            py: 1.2,
-            '&.Mui-selected': {
-              color: 'black',
-              backgroundColor:
-                tab === 'buy'
-                  ? theme.palette.primary.main
-                  : theme.palette.secondary.main,
-              '&:hover': {
-                backgroundColor:
-                  tab === 'buy'
-                    ? theme.palette.primary.dark
-                    : theme.palette.secondary.dark,
-              },
+        sx={{ mb: 2 }}>
+        <ToggleButton
+          value='buy'
+          sx={{
+            fontWeight: 600,
+            color: isBuy ? 'white' : undefined,
+            backgroundColor: isBuy ? 'green' : undefined,
+            ':hover': { backgroundColor: isBuy ? 'green' : undefined },
+          }}>
+          Buy
+        </ToggleButton>
+        <ToggleButton
+          value='sell'
+          sx={{
+            fontWeight: 600,
+            color: !isBuy ? 'white' : undefined,
+            backgroundColor: !isBuy ? theme.palette.error.main : undefined,
+            ':hover': {
+              backgroundColor: !isBuy ? theme.palette.error.main : undefined,
             },
-          },
-        }}>
-        <ToggleButton value='buy'>Buy</ToggleButton>
-        <ToggleButton value='sell'>Sell</ToggleButton>
+          }}>
+          Sell
+        </ToggleButton>
       </ToggleButtonGroup>
 
-      {/* Slippage Field */}
+      {/* Slippage */}
       <TextField
         label='Slippage (%)'
-        variant='outlined'
-        value={slippage}
-        onChange={(e) => setSlippage(e.target.value)}
+        type='number'
         fullWidth
-        InputProps={{
-          sx: {
-            borderRadius: 1.5,
+        size='small'
+        defaultValue={5}
+        sx={{
+          mb: 2,
+          '& .MuiOutlinedInput-root': {
+            borderColor: isBuy
+              ? theme.palette.success.main
+              : theme.palette.error.main,
           },
         }}
       />
 
-      {/* Amount Field */}
+      {/* Amount */}
       <TextField
         label='Amount'
-        variant='outlined'
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
+        type='number'
         fullWidth
+        size='small'
         InputProps={{
-          endAdornment: <InputAdornment position='end'>SOL</InputAdornment>,
-          sx: {
-            borderRadius: 1.5,
-          },
+          endAdornment: (
+            <Chip
+              label={isBuy ? 'SOL' : '$Nutter'}
+              size='small'
+              sx={{
+                bgcolor: isBuy
+                  ? theme.palette.success.main
+                  : theme.palette.error.main,
+                color: 'white',
+              }}
+            />
+          ),
         }}
+        sx={{ mb: 0.5 }}
       />
 
       <Typography variant='caption' color='text.secondary'>
-        ≈ 0 SOLANA
+        ≈ 0 {isBuy ? 'Pixiu' : 'SOL'}
       </Typography>
 
-      <Box display='flex' alignItems='center' gap={1}>
-        <AttachMoneyIcon fontSize='small' color='success' />
-        <Typography variant='body2' fontWeight={500}>
-          0.00000 SOL
-        </Typography>
-      </Box>
+      {/* Balance */}
+      <Typography
+        variant='body2'
+        color={isBuy ? theme.palette.success.main : theme.palette.error.main}
+        fontWeight={600}
+        mt={1}>
+        {isBuy ? '0.00000 SOL' : '0 Pixiu'}
+      </Typography>
 
-      <Box display='flex' gap={1}>
-        <Chip label='Half' size='small' color='primary' variant='outlined' />
-        <Chip label='Max' size='small' color='primary' variant='outlined' />
-      </Box>
+      {/* Half / Max */}
+      <Stack direction='row' spacing={1} mt={1}>
+        <Chip
+          label='Half'
+          size='small'
+          color={isBuy ? 'primary' : 'secondary'}
+          variant='outlined'
+        />
+        <Chip
+          label='Max'
+          size='small'
+          color={isBuy ? 'primary' : 'secondary'}
+          variant='outlined'
+        />
+      </Stack>
 
-      <Divider sx={{ my: 1 }} />
-
-      {/* Connect Wallet Button */}
+      {/* Enter Amount Button */}
       <Button
         variant='contained'
         fullWidth
-        sx={{
-          bgcolor: '#BDBDBD',
-          color: '#fff',
-          fontWeight: 'bold',
-          textTransform: 'none',
-          py: 1.2,
-          borderRadius: 2,
-          '&:hover': {
-            bgcolor: '#9e9e9e',
-          },
-        }}
-        disabled>
-        Connect Your Wallet
+        disabled
+        sx={{ mt: 2, backgroundColor: '#ccc', color: 'white' }}>
+        Enter Amount
       </Button>
     </Box>
   );
-};
-
-export default BuySellBox;
+}

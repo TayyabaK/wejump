@@ -13,6 +13,7 @@ import {
   Paper,
   Chip,
   Link,
+  useTheme,
 } from '@mui/material';
 import { useThemeMode } from '@/theme/theme-context';
 
@@ -31,6 +32,7 @@ const holdersData = [
 
 export default function TokenHoldersTable() {
   const { mode } = useThemeMode();
+  const theme = useTheme();
   const isDarkMode = mode === 'dark';
   return (
     <Box mt={4}>
@@ -45,7 +47,16 @@ export default function TokenHoldersTable() {
             <col style={{ width: '33%' }} />
             <col style={{ width: '33%' }} />
           </colgroup>
-          <TableHead>
+          <TableHead
+            sx={{
+              backgroundColor: theme.palette.background.default,
+              border: '1px solid',
+              borderColor: isDarkMode ? '#ffffff' : '#A9A9A9',
+              '& th': {
+                fontWeight: 600,
+                color: isDarkMode ? '#ffffff' : '#000',
+              },
+            }}>
             <TableRow>
               <TableCell sx={{ width: '33%' }}>#</TableCell>
               <TableCell sx={{ width: '33%' }}>Holder</TableCell>
@@ -56,17 +67,21 @@ export default function TokenHoldersTable() {
           </TableHead>
           <TableBody>
             {holdersData.map((row) => (
-              <TableRow
-                key={row.rank}
-                sx={{
-                  '&:not(:last-child)': {
+              <TableRow key={row.rank} sx={{ height: '48px' }}>
+                <TableCell
+                  sx={{
+                    width: '33%',
                     borderBottom: '1px solid',
-                    borderColor: isDarkMode ? 'white' : 'grey',
-                  },
-                  height: '48px',
-                }}>
-                <TableCell sx={{ width: '33%' }}>{row.rank}</TableCell>
-                <TableCell sx={{ width: '33%' }}>
+                    borderColor: isDarkMode ? '#ffffff' : '#A9A9A9',
+                  }}>
+                  {row.rank}
+                </TableCell>
+                <TableCell
+                  sx={{
+                    width: '33%',
+                    borderBottom: '1px solid',
+                    borderColor: isDarkMode ? '#ffffff' : '#A9A9A9',
+                  }}>
                   <Box display='flex' alignItems='center' gap={1}>
                     <Chip
                       label={row.holder}
@@ -85,7 +100,13 @@ export default function TokenHoldersTable() {
                     </Link>
                   </Box>
                 </TableCell>
-                <TableCell sx={{ width: '33%' }} align='right'>
+                <TableCell
+                  align='right'
+                  sx={{
+                    width: '33%',
+                    borderBottom: '1px solid',
+                    borderColor: isDarkMode ? '#ffffff' : '#A9A9A9',
+                  }}>
                   {row.percent.toFixed(2)}%
                 </TableCell>
               </TableRow>

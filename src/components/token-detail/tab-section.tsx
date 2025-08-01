@@ -34,6 +34,7 @@ export default function TabsSection() {
           display: 'flex',
           gap: 1,
           flexWrap: 'wrap',
+          backgroundColor: theme.palette.background.default,
         }}>
         {tabOptions.map((opt) => (
           <Button
