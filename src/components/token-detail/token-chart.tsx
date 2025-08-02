@@ -42,10 +42,11 @@ const TradingViewChart = () => {
       },
     },
     grid: {
-      left: '5%',
-      right: '5%',
+      left: '3%',
+      right: '3%',
       bottom: '12%',
       top: '10%',
+      containLabel: true, // This ensures labels stay within the grid
     },
     xAxis: {
       type: 'category',
@@ -98,7 +99,12 @@ const TradingViewChart = () => {
   const dynamicHeight = isMobile ? 300 : isTablet ? 400 : 500;
 
   return (
-    <div style={{ width: '100%', height: `${dynamicHeight}px` }}>
+    <div
+      style={{
+        width: '100%',
+        height: `${dynamicHeight}px`,
+        overflow: 'hidden', // Add this to prevent any overflow
+      }}>
       <ReactECharts
         option={option}
         style={{ height: '100%', width: '100%' }}

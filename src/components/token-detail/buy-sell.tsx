@@ -43,7 +43,7 @@ export default function BuySellWidget() {
           ? themeExtra.purple.main
           : theme.palette.background.paper,
         p: 3,
-        width: { xs: '100%', sm: 360 },
+        width: { xs: '100%' },
         boxShadow: theme.shadows[2],
       }}>
       {/* Market Cap Progress */}

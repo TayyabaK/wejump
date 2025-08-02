@@ -57,7 +57,9 @@ export default function TokenDetailsPage() {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 4,
-                minHeight: '80vh', // Adjust as needed
+                minHeight: '80vh',
+                width: '100%', // Ensure it takes full width
+                overflow: 'hidden', // Prevent overflow
               }}>
               <TradingViewChart />
               <TabsSection />
