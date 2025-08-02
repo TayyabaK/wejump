@@ -18,7 +18,7 @@ const Hero = () => {
         maxWidth='xl'
         sx={{
           px: { xs: 2, md: 6 },
-          py: { xs: 4, md: 6 },
+          py: { xs: 10, md: 6 },
           zIndex: 1,
           overflow: 'hidden',
           borderBottomLeftRadius: { xs: 24, md: 40 },

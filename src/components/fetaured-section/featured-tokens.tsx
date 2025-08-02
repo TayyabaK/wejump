@@ -124,30 +124,28 @@ const FeaturedTokens = () => {
               width: '100%',
             }}>
             {/* Search */}
-            {isMobile && (
-              <Paper
-                component='form'
-                sx={{
-                  p: '6px 12px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  width: 250,
-                  borderRadius: '24px',
-                  backgroundColor: theme.palette.background.paper,
-                  boxShadow: 'none',
-                  border: `1px solid ${
-                    isDark
-                      ? theme.palette.primary.main
-                      : theme.palette.secondary.main
-                  }`,
-                }}>
-                <SearchIcon sx={{ color: 'text.secondary', mr: 1 }} />
-                <InputBase
-                  placeholder='Search tokens...'
-                  sx={{ flex: 1, fontSize: '0.9rem' }}
-                />
-              </Paper>
-            )}
+            <Paper
+              component='form'
+              sx={{
+                p: '6px 12px',
+                display: 'flex',
+                alignItems: 'center',
+                width: 250,
+                borderRadius: '24px',
+                backgroundColor: theme.palette.background.paper,
+                boxShadow: 'none',
+                border: `1px solid ${
+                  isDark
+                    ? theme.palette.primary.main
+                    : theme.palette.secondary.main
+                }`,
+              }}>
+              <SearchIcon sx={{ color: 'text.secondary', mr: 1 }} />
+              <InputBase
+                placeholder='Search tokens...'
+                sx={{ flex: 1, fontSize: '0.9rem' }}
+              />
+            </Paper>
 
             {/* Buttons */}
             {filterOptions.map((opt) => (

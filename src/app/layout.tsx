@@ -29,18 +29,6 @@ export default function RootLayout({
       <body className={sora.variable}>
         <LanguageProvider>
           <ThemeProvider>
-            {/* Sidebar should be first in DOM but with lower z-index */}
-            <Box
-              sx={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                height: '100%',
-                zIndex: 200,
-              }}>
-              <Sidebar />
-            </Box>
-
             {/* Navbar container with higher z-index */}
             <Box
               sx={{
@@ -56,7 +44,7 @@ export default function RootLayout({
               sx={{
                 pt: 3,
                 mt: { xs: '64px', md: '64px' }, // Match navbar height
-                ml: { xs: 0, md: '72px' }, // Match sidebar width
+                // ml: { xs: 0, md: '72px' }, // Match sidebar width
                 zIndex: 0, // Between navbar and sidebar
               }}>
               {children}

@@ -46,9 +46,7 @@ const Sidebar = () => {
     { text: t.advanced, icon: <FlashOnIcon /> },
   ];
 
-  const toggleDrawer = () => {
-    setOpen(!open);
-  };
+  const toggleDrawer = () => setOpen(!open);
 
   const toggleCollapse = () => {
     if (!isMobile) {
@@ -74,7 +72,7 @@ const Sidebar = () => {
           sx={{
             position: 'fixed',
             top: 16,
-            left: 16,
+            right: 16,
             zIndex: 1300,
             color: theme.palette.text.primary,
             backgroundColor: theme.palette.background.paper,
@@ -87,22 +85,21 @@ const Sidebar = () => {
       )}
 
       <Drawer
+        anchor='right'
         variant={isMobile ? 'temporary' : 'permanent'}
         open={isMobile ? open : true}
         onClose={toggleDrawer}
-        ModalProps={{
-          keepMounted: true, // Better open performance on mobile
-        }}
-        BackdropProps={{
-          onClick: toggleDrawer,
-        }}
+        ModalProps={{ keepMounted: true }}
+        BackdropProps={{ onClick: toggleDrawer }}
+        onMouseEnter={!isMobile ? toggleCollapse : undefined}
+        onMouseLeave={!isMobile ? toggleCollapse : undefined}
         sx={{
           '& .MuiDrawer-paper': {
             width: currentWidth,
             backgroundColor: theme.palette.background.paper,
             color: theme.palette.text.primary,
-            borderRight: 'none',
-            borderRadius: isMobile ? '16px' : '0 16px 16px 0',
+            borderLeft: isMobile ? 'none' : '1px solid transparent',
+            borderRadius: isMobile ? '16px' : '16px 0 0 16px',
             mx: isMobile ? 2 : 0,
             mt: isMobile ? 4 : 0,
             mb: isMobile ? 4 : 0,
@@ -117,9 +114,7 @@ const Sidebar = () => {
               duration: theme.transitions.duration.standard,
             }),
           },
-        }}
-        onMouseEnter={toggleCollapse}
-        onMouseLeave={toggleCollapse}>
+        }}>
         <Box
           sx={{
             flex: 1,
@@ -137,9 +132,7 @@ const Sidebar = () => {
               gap: 1,
               minHeight: 80,
               cursor: 'pointer',
-              '&:hover': {
-                opacity: 0.85,
-              },
+              '&:hover': { opacity: 0.85 },
             }}>
             <Avatar
               src='/icons/wejump.png'

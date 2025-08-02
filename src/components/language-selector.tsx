@@ -51,33 +51,32 @@ const LanguageSelector: React.FC = () => {
 
   return (
     <Box>
-      <Tooltip title="Change language">
+      <Tooltip title='Change language'>
         <IconButton
           onClick={handleClick}
-          color="inherit"
-          aria-label="language selector"
-          aria-controls="language-menu"
-          aria-haspopup="true"
+          color='inherit'
+          aria-label='language selector'
+          aria-controls='language-menu'
+          aria-haspopup='true'
           aria-expanded={open ? 'true' : undefined}
           sx={{
             borderRadius: 1,
             border: '1px solid',
             borderColor: 'divider',
-            minWidth: 64,
-            height: 40,
+            width: { xs: 32, md: 60 },
+            height: { xs: 32, md: 40 },
             '&:hover': {
               backgroundColor: 'action.hover',
             },
-          }}
-        >
-          <Typography variant="body2" fontWeight="medium">
+          }}>
+          <Typography variant='body2' fontWeight='medium'>
             {currentLanguage?.displayText}
           </Typography>
         </IconButton>
       </Tooltip>
 
       <Menu
-        id="language-menu"
+        id='language-menu'
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
@@ -90,18 +89,16 @@ const LanguageSelector: React.FC = () => {
             mt: 1,
             boxShadow: 2,
           },
-        }}
-      >
+        }}>
         {LANGUAGES.map((lang) => (
           <MenuItem
             key={lang.code}
             selected={lang.code === language}
-            onClick={() => handleLanguageChange(lang.code)}
-          >
+            onClick={() => handleLanguageChange(lang.code)}>
             <ListItemIcon sx={{ minWidth: 36 }}>
-              {lang.code === language && <CheckIcon fontSize="small" />}
+              {lang.code === language && <CheckIcon fontSize='small' />}
             </ListItemIcon>
-            <Typography variant="body2">
+            <Typography variant='body2'>
               {lang.label} ({lang.displayText})
             </Typography>
           </MenuItem>
