@@ -43,7 +43,7 @@ export default function RootLayout({
               component='main'
               sx={{
                 pt: 3,
-                mt: { xs: '64px', md: '64px' }, // Match navbar height
+                mt: { xs: '120px', md: '90px' }, // Match navbar height
                 // ml: { xs: 0, md: '72px' }, // Match sidebar width
                 zIndex: 0, // Between navbar and sidebar
               }}>
