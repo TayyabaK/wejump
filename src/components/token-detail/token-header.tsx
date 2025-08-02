@@ -125,7 +125,10 @@ export default function TokenHeader({
 
           <Box display='flex' alignItems='center' gap={1}>
             <Chip
-              label={`${contract.slice(0, 6)}...${contract.slice(-4)}`}
+              label={`Contract Address: ${contract.slice(
+                0,
+                6
+              )}...${contract.slice(-4)}`}
               size='small'
               sx={{
                 backgroundColor: isDarkMode
