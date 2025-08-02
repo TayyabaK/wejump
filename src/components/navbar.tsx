@@ -94,29 +94,31 @@ const Navbar = () => {
         zIndex: (theme) => theme.zIndex.drawer + 1,
       }}>
       {isMobile ? (
-        <Toolbar sx={{ py: 2, minHeight: '80px !important', px: 2 }}>
-          <Stack width='100%' spacing={1}>
+        <Toolbar sx={{ py: 2, minHeight: '110px !important', px: 2 }}>
+          <Stack width='100%' spacing={1.5}>
             {/* Top Row - Centered Logo and Name */}
             <Box
               sx={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: 1,
+                gap: 1.5,
                 cursor: 'pointer',
+                height: '60px',
               }}
               onClick={() => router.push('/')}>
               <Image
                 src='/icons/wejump.png'
                 alt='Logo'
-                width={60}
-                height={60}
+                width={70}
+                height={70}
                 style={{ borderRadius: '50%' }}
               />
               <Typography
-                variant='h6'
+                variant='h5'
                 sx={{
                   fontWeight: 700,
+                  fontSize: '1.4rem',
                   color: isDark
                     ? theme.palette.primary.main
                     : theme.palette.secondary.main,
@@ -130,42 +132,41 @@ const Navbar = () => {
               display='flex'
               justifyContent='center'
               alignItems='center'
-              width='100%'>
-              <Box
-                display='flex'
-                alignItems='center'
-                gap={0.5}
-                flexWrap='nowrap'>
+              width='100%'
+              height='50px'>
+              <Box display='flex' alignItems='center' gap={1} flexWrap='nowrap'>
                 <IconButton
                   onClick={toggleColorMode}
-                  size='small'
+                  size='medium'
                   sx={{
                     color: isDark
                       ? theme.palette.primary.main
                       : theme.palette.secondary.main,
-                    p: 0.5,
+                    p: 1,
+                    height: '40px',
+                    width: '40px',
                   }}>
                   {isDark ? (
-                    <LightModeIcon fontSize='small' />
+                    <LightModeIcon fontSize='medium' />
                   ) : (
-                    <DarkModeIcon fontSize='small' />
+                    <DarkModeIcon fontSize='medium' />
                   )}
                 </IconButton>
 
                 <Button
                   variant='contained'
                   color='primary'
-                  startIcon={<AccountBalanceWalletIcon fontSize='small' />}
+                  startIcon={<AccountBalanceWalletIcon fontSize='medium' />}
                   sx={{
-                    fontWeight: 400,
+                    fontWeight: 500,
                     color: theme.palette.primary.contrastText,
                     textTransform: 'none',
                     borderRadius: 2,
-                    fontSize: '0.65rem',
-                    minWidth: '110px',
+                    fontSize: '0.8rem',
+                    minWidth: '120px',
+                    height: '40px',
                     whiteSpace: 'nowrap',
-                    px: 1.2,
-                    py: 0.5,
+                    px: 1.5,
                   }}
                   onClick={toggleWalletConnection}>
                   {connected
@@ -177,19 +178,23 @@ const Navbar = () => {
 
                 {connected && showWalletAddress && (
                   <IconButton
-                    size='small'
+                    size='medium'
                     color='secondary'
                     sx={{
-                      p: 0.5,
+                      p: 1,
+                      height: '40px',
+                      width: '40px',
                     }}>
-                    <RocketLaunchIcon fontSize='small' />
+                    <RocketLaunchIcon fontSize='medium' />
                   </IconButton>
                 )}
 
                 <IconButton
-                  size='small'
+                  size='medium'
                   sx={{
-                    p: 0.5,
+                    p: 1,
+                    height: '40px',
+                    width: '40px',
                     color: isDark
                       ? theme.palette.primary.main
                       : theme.palette.secondary.main,
@@ -199,7 +204,7 @@ const Navbar = () => {
                         : theme.palette.secondary.main
                     }`,
                   }}>
-                  <BarChartIcon fontSize='small' />
+                  <BarChartIcon fontSize='medium' />
                 </IconButton>
 
                 <LanguageSelector />
@@ -207,19 +212,18 @@ const Navbar = () => {
                 {/* Menu Button with Text and Dropdown */}
                 <Button
                   onClick={handleClick}
-                  startIcon={<MenuIcon fontSize='small' />}
+                  startIcon={<MenuIcon fontSize='medium' />}
                   sx={{
                     color: isDark
                       ? theme.palette.primary.main
                       : theme.palette.secondary.main,
-                    fontSize: '0.75rem',
+                    fontSize: '0.85rem',
                     textTransform: 'none',
                     px: 1,
-                    minWidth: '70px',
+                    minWidth: '80px',
+                    height: '40px',
                     whiteSpace: 'nowrap',
-                  }}>
-                  Menu
-                </Button>
+                  }}></Button>
 
                 <Menu
                   anchorEl={anchorEl}
@@ -238,6 +242,10 @@ const Navbar = () => {
                           ? theme.palette.primary.main
                           : theme.palette.secondary.main
                       }`,
+                      '& .MuiMenuItem-root': {
+                        minHeight: 48,
+                        padding: '12px 16px',
+                      },
                     },
                   }}
                   transformOrigin={{ horizontal: 'right', vertical: 'top' }}
@@ -249,8 +257,13 @@ const Navbar = () => {
                         item.action();
                         handleClose();
                       }}>
-                      <ListItemIcon>{item.icon}</ListItemIcon>
-                      <ListItemText>{item.text}</ListItemText>
+                      <ListItemIcon sx={{ minWidth: '36px' }}>
+                        {item.icon}
+                      </ListItemIcon>
+                      <ListItemText
+                        primaryTypographyProps={{ fontSize: '0.95rem' }}>
+                        {item.text}
+                      </ListItemText>
                     </MenuItem>
                   ))}
                 </Menu>
@@ -314,8 +327,6 @@ const Navbar = () => {
                 }}>
                 {isDark ? <LightModeIcon /> : <DarkModeIcon />}
               </IconButton>
-
-              <LanguageSelector />
 
               {/* Connect Wallet Button - Toggles between text and address */}
               <Button
