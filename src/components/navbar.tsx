@@ -113,7 +113,7 @@ const Navbar = () => {
                 borderRadius: 2,
               }}
               onClick={() => alert('Connect Wallet logic goes here')}>
-              {isMobile ? '' : t.connectWallet}
+              {t.connectWallet}
             </Button>
           </Box>
         </Box>
